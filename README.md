@@ -55,7 +55,9 @@ LOGO
 # Hacks:
 
 Fly hacks::
+
 {
+
 :: Creative Fly
 
 :: Glide
@@ -63,6 +65,7 @@ Fly hacks::
 :: Jetpack
 
 :: BoatFly
+
 }
         
 Jesus Hack
