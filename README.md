@@ -52,10 +52,10 @@ TPS (Not working)
 LOGO
        ::
        
-:: Hacks:
+# Hacks:
 
-:: Fly hacks::
-
+Fly hacks::
+{
 :: Creative Fly
 
 :: Glide
@@ -63,7 +63,7 @@ LOGO
 :: Jetpack
 
 :: BoatFly
-
+}
         
 Jesus Hack
 
