@@ -1,0 +1,25 @@
+package net.fabricmc.smphack.Nofall;
+
+import net.fabricmc.smphack.MainGui;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+
+import static net.fabricmc.smphack.BoatFly.BoatFly.player;
+
+public class Nofall extends MainGui {
+
+    @Override
+    public void toggled()
+    {
+        enabled=!enabled;
+    }
+
+    @Override
+    public void update()
+    {
+        NoFallHack nofall = new NoFallHack();
+        nofall.cancelFallDamage((ClientPlayerEntity) player);
+    }
+
+
+}
