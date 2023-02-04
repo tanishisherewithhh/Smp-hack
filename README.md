@@ -35,11 +35,11 @@ Use Mod menu settings to configure.
 
 Steps:
 
-1: Click on the Mods button in homescreen or when you are within a server or a world
+1:  Click on the Mods button in homescreen or when you are within a server or a world
 ![step1](https://user-images.githubusercontent.com/120117618/216766932-f4980e26-ec20-41be-a7c1-7ebaf12a3c5c.png)
-2:Click on Smp-hack mod and then click on the settings icon in the top right
+2:  Click on Smp-hack mod and then click on the settings icon in the top right
 ![step2](https://user-images.githubusercontent.com/120117618/216766951-c058eb6b-5331-4372-98e2-a863380b6e10.png)
-3: Configure whatever you want :)
+3:  Configure whatever you want :)
 ![step3](https://user-images.githubusercontent.com/120117618/216766955-9c68d4df-5f04-43cd-b6cb-290d221da742.png)
 
 
