@@ -16,9 +16,9 @@
  
 #Dependencies
 
-![Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
+[Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
 
-![Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
+[Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
 Optional
 Sodium
