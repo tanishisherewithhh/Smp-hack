@@ -20,7 +20,7 @@
 
 # [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
-Optional
+Optional-
 Sodium
 Phosphorus
 Starlight
