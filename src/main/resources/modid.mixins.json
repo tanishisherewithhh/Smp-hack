@@ -7,7 +7,6 @@
   ],
   "client": [
     "ExampleMixin",
-    "FullBrightMixin",
     "OnTotemPopMixin",
     "PlayerEntityRendererMixin",
     "ServerOptOut"

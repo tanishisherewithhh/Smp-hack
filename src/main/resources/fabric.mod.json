@@ -16,21 +16,30 @@
   "license": "CC0-1.0",
   "icon": "assets/smphack/smphack.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "net.fabricmc.smphack.MainHack"
+    ],
+    "client": [
+      "net.fabricmc.smphack.ConfigController"
+    ],
+    "modmenu": [
+      "net.fabricmc.smphack.config.ModMenuIntegration"
     ]
-  },
+},
   "mixins": [
-    "modid.mixins.json"
+    "modid.mixins.json",
+    "fireoverlaycontroller.mixins.json"
+
   ],
 
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric-api": "*",
     "minecraft": "~1.19.3",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config2": ">=9.0.63"
   },
   "suggests": {
     "another-mod": "*"

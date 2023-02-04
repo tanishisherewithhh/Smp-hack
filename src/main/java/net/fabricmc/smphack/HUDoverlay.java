@@ -4,22 +4,24 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.smphack.Fly.Flymodes;
-import net.fabricmc.smphack.Jesus.Jesusm;
-import net.fabricmc.smphack.Jesus.jesus;
-import net.fabricmc.smphack.Nofall.Nofall;
-import net.fabricmc.smphack.Speed.Speed;
+import net.fabricmc.smphack.Hacks.Fly.Fly;
+import net.fabricmc.smphack.Hacks.Fly.Flymodes;
+import net.fabricmc.smphack.Hacks.Jesus.Jesusm;
+import net.fabricmc.smphack.Hacks.Jesus.jesus;
+import net.fabricmc.smphack.Hacks.Nofall.Nofall;
+import net.fabricmc.smphack.Hacks.Speed.Speed;
+import net.fabricmc.smphack.Hacks.fullbright.Fullbright;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
-import net.fabricmc.smphack.Fly.Fly;
 
-import static net.fabricmc.smphack.BoatFly.BoatFly.player;
+import static net.fabricmc.smphack.Hacks.BoatFly.BoatFly.player;
 
 // I know no one is gonna check the source code but for the few people who do and might need help, I am glad for you;
 // This shit took me much time. I didnt know How the fuck do you even use keybinds and onHudRender was. Heck I didnt even know what is the main class of fabric is. Bruh.
@@ -34,10 +36,12 @@ public class HUDoverlay implements HudRenderCallback {
     Nofall noFall = new Nofall();
     Jesusm jesus = new Jesusm();
     Speed speed = new Speed();
-   jesus jes = new jesus();
+    jesus jes = new jesus();
+    Fullbright fullbright = new Fullbright();
 
     int tw = 10;
     int th = 10;
+    boolean Fullbright;
     private static final KeyBinding FlyKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "Fly toggle",
             InputUtil.Type.KEYSYM,
@@ -70,7 +74,9 @@ public class HUDoverlay implements HudRenderCallback {
         //To avoid stupid crashes
         if (mc != null )
         {
-        //To stop rendering if debug screen or F3 menu is enabled
+            assert mc.player != null;
+
+            //To stop rendering if debug screen or F3 menu is enabled
            if (mc.options.debugEnabled) {return;}
            //To avoid null crashes
             if (Formatting.RED.getColorValue() == null || Formatting.BLUE.getColorValue() == null || Formatting.WHITE.getColorValue() == null || Formatting.GREEN.getColorValue() == null)
@@ -86,7 +92,6 @@ public class HUDoverlay implements HudRenderCallback {
             { //Useless brackets in order to seperate the different mods
                 if (FlyKey.wasPressed()) {
                     fly.toggled();
-                    player.sendMessage(Text.of("Fly On"));
                 }
 
                 //To get fly mode
@@ -110,7 +115,6 @@ public class HUDoverlay implements HudRenderCallback {
             {
                 if (Nofallkey.wasPressed()) {
                     noFall.toggled();
-                    player.sendMessage(Text.of("Nofall On"));
                 }
                 if (noFall.enabled) {
                     noFall.update();
@@ -138,7 +142,6 @@ public class HUDoverlay implements HudRenderCallback {
             if(SpeedKey.wasPressed())
             {
                 speed.toggled();
-                player.sendMessage(Text.of("Speed On"));
             }
             if(speed.enabled)
             {
@@ -151,7 +154,11 @@ public class HUDoverlay implements HudRenderCallback {
                 assert mc.player != null;
                 mc.player.getAbilities().setWalkSpeed(speed.walkspeed);
             }
-
+            Fullbright= ConfigController.getConfig().Fullbright;
+            if(Fullbright)
+            {fullbright.update();}
+            else
+            {mc.player.removeStatusEffect(StatusEffects.NIGHT_VISION);}
 
 
         }

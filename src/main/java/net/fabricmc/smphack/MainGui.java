@@ -6,14 +6,6 @@ public class MainGui {
         enabled=!enabled;
     }
     public void update() {}
-    public void toggled1(){
-        enabled=!enabled;
-    }
-    public void update1() {}
-    public void toggled2(){
-        enabled=!enabled;
-    }
-    public void update2() {}
 
 
 
