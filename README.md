@@ -30,6 +30,15 @@ Other Performance enchancers
 
 Add the jar file of the mod to your .minecraft mod folder
 
+The new version includes being able to change several values for Jetpack mode, Fire overlay height, and opacity, etc.
+Use Mod menu settings to configure.
+
+Steps:
+
+1:![step1](https://user-images.githubusercontent.com/120117618/216766932-f4980e26-ec20-41be-a7c1-7ebaf12a3c5c.png)
+2:![step2](https://user-images.githubusercontent.com/120117618/216766951-c058eb6b-5331-4372-98e2-a863380b6e10.png)
+3:![step3](https://user-images.githubusercontent.com/120117618/216766955-9c68d4df-5f04-43cd-b6cb-290d221da742.png)
+
 
 
 # Default Keybinds:
