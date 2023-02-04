@@ -14,11 +14,11 @@
  
  The code in this client might cause retardation in some people so I warn you before you look
  
-#Dependencies
+# Dependencies
 
-[Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
+# [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
 
-[Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
+# [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
 Optional
 Sodium
@@ -26,13 +26,13 @@ Phosphorus
 Starlight
 Other Performance enchancers
 
-#How to Use:
+# How to Use:
 
 Add the jar file of the mod to your .minecraft mod folder
 
 
 
-#Default Keybinds:
+# Default Keybinds:
 
 You can change the keybinds via the minecraft's keybind/Control settings
 
@@ -47,7 +47,7 @@ N - Nofall
 V - Speed (Anti hunger inbuilt (pretty trash antihunger))
 
 
-#Features:
+# Features:
 
 Skidded Hacks (some are mine)
 
