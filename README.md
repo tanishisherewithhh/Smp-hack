@@ -48,59 +48,43 @@ Steps:
 
 You can change the keybinds via the minecraft's keybind/Control settings
 
-Z - Fly
-
-M - Change Fly modes
-
-K - Jesus
-
-N - Nofall
-
-V - Speed (Anti hunger inbuilt (pretty trash antihunger))
-
+|Name|Description|Default Bind|
+|-|-|-|
+|Toggle Fly|Enables/disables Fly aka Allows you to fly|`Z`|
+|Change Fly Modes|Changes Fly modes)|`M`|
+|Jesus |Allows you to walk on Water|`K`|
+|Nofall |Tries to cancel your fall damage|`N`|
+|Speed |Changes your walk speed (Anti hunger is inbuilt but shitty)|`V`|
+|Freecam |Creates a fake player which acts as spectator mode and allows you to move in your world within the render distance|`UNBOUND`|
 
 # Features:
 
 Skidded Hacks (some are mine)
 
-RGB HUD::
+|Feature|Description|
+|-|-|
+|RGB HUD|-|
+|Player coordinates | Shows player coordinates|
+|FPS| Shows player current FPS|
+|TPS| Shows server ticks per second (currently removed)|
+|LOGO| Smp hack logo|
+|Customisable Values| You can change the values of certain hacks for your desire|
+|Customisable Keybinds| You can change the Keybinds of certain hacks for your desire|
+|Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
+|HealthIndicator mod|Shows health above players head (removed for now aka not working)|
 
-Player Coordinates
-
-FPS
-
-TPS (Not working) (removed for now)
-
-LOGO
-       ::
        
 # Hacks:
 
-Fly hacks::
-
-{
-
-:: Creative Fly
-
-:: Glide
-
-:: Jetpack
-
-:: BoatFly
-
-}
-        
-Jesus Hack
-
-NoFall hack
-
-Speed hack
-
-AntiHunger
-
-AutoTotem (Cannot disable and starts working once you have totem in your offhand and in inventory)
-
-:
+|Hacks |Modes |
+|-|-|
+|Fly hack | Allows You to fly| Creative Fly, BoatFly, Glider, Jetpack|
+|Jesus |-| 
+|Nofall|-|
+|Speed|-|
+|AntiHunger|-|
+|AutoTotem|Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
+|Freecam|-|
 
 HealthIndicator mod (inbuilt)(Also not working for some reason)
 
