@@ -78,15 +78,13 @@ Skidded Hacks (some are mine)
 
 |Hacks |Modes |
 |-|-|
-|Fly hack | Allows You to fly| Creative Fly, BoatFly, Glider, Jetpack|
+|Fly hack | Creative Fly, BoatFly, Glider, Jetpack|
 |Jesus |-| 
 |Nofall|-|
 |Speed|-|
 |AntiHunger|-|
-|AutoTotem|Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
+|AutoTotem| Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
 |Freecam|-|
-
-HealthIndicator mod (inbuilt)(Also not working for some reason)
 
 
        
