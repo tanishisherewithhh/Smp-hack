@@ -52,7 +52,7 @@ Z - Fly
 
 M - Change Fly modes
 
-B - Jesus
+K - Jesus
 
 N - Nofall
 
