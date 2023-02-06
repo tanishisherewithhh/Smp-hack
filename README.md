@@ -56,6 +56,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |Nofall |Tries to cancel your fall damage|`N`|
 |Speed |Changes your walk speed (Anti hunger is inbuilt but shitty)|`V`|
 |Freecam |Creates a fake player which acts as spectator mode and allows you to move in your world within the render distance|`UNBOUND`|
+|SpeedMine |Increase the mining speed |`Change Via Config settings`|
 
 # Features:
 
@@ -86,6 +87,7 @@ Skidded Hacks (some are mine)
 |AntiHunger|-|
 |AutoTotem| Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
 |Freecam|-|
+|SpeedMine | HasteMode, NoBreakDelay|
 
 
        
