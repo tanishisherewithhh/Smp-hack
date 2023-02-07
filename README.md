@@ -40,7 +40,7 @@ Steps:
 2:  Click on Smp-hack mod and then click on the settings icon in the top right
 ![step2](https://user-images.githubusercontent.com/120117618/216766951-c058eb6b-5331-4372-98e2-a863380b6e10.png)
 3:  Configure whatever you want :)
-![step3](https://user-images.githubusercontent.com/120117618/216766955-9c68d4df-5f04-43cd-b6cb-290d221da742.png)
+![step3](https://user-images.githubusercontent.com/120117618/217315193-6af554cc-fc77-43e2-835d-ef47bf6b88d3.png)
 
 
 
@@ -88,6 +88,3 @@ Skidded Hacks (some are mine)
 |AutoTotem| Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
 |Freecam|-|
 |SpeedMine | HasteMode, NoBreakDelay|
-
-
-       
