@@ -28,7 +28,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+    - name: Build the thing
+      run: |
+        chmod +x gradlew ./gradlew build
+        
+    - name: Upload thing
+      uses: actions/upload-artifact@v2
       with:
-        arguments: build
+        name: Smp-hack
+        path: |
+          build/libs/Smp-hack*.jar
+          !build/libs/Smp-hack-*-*.jar
