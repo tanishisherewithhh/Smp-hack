@@ -83,7 +83,7 @@ Skidded Hacks (some are mine)
 
 |Hacks |Modes |
 |-|-|
-|Fly hack | Creative Fly, BoatFly, Glider, Jetpack|
+|Fly hack | Creative Fly, BoatFly, Glider, Jetpack,ElytraBoost|
 |Jesus |-| 
 |Nofall|-|
 |Speed|onGround, Strafe, Bhop|
