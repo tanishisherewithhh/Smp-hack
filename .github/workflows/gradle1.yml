@@ -30,7 +30,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Smp-hack
-        path: |
-        build:
-        !build
+        path: build/libs
          
