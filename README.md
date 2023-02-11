@@ -57,6 +57,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |Speed |Changes your walk speed (Anti hunger is inbuilt but shitty)|`V`|
 |Freecam |Creates a fake player which acts as spectator mode and allows you to move in your world within the render distance|`UNBOUND`|
 |SpeedMine |Increase the mining speed |`Change Via Config settings`|
+|NoWeather |Removes rain and thunder |`Change Via Config settings`|
 
 # Features:
 
@@ -68,11 +69,13 @@ Skidded Hacks (some are mine)
 |Player coordinates | Shows player coordinates|
 |FPS| Shows player current FPS|
 |TPS| Shows server ticks per second (currently removed)|
+|BPS| Track your current speed |
 |LOGO| Smp hack logo|
 |Customisable Values| You can change the values of certain hacks for your desire using mod menu|
+|Customisable HUD| You can move the Hud elements to left or right side of the screen|
 |Customisable Keybinds| You can change the Keybinds of certain hacks for your desire|
 |Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
-|HealthIndicator mod|Shows health above players head (removed for now aka not working)|
+|HealthIndicator mod|Shows health above players head (Now working) |
 |Fire Overlay settings| You can change the opacity of fire overlay (Height does not change for some reason)
 
        
@@ -83,8 +86,10 @@ Skidded Hacks (some are mine)
 |Fly hack | Creative Fly, BoatFly, Glider, Jetpack|
 |Jesus |-| 
 |Nofall|-|
-|Speed|-|
+|Speed|onGround, Strafe, Bhop|
 |AntiHunger|-|
 |AutoTotem| Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
 |Freecam|-|
 |SpeedMine | HasteMode, NoBreakDelay|
+|NoWeather |-|
+|Health Indicator|-|
