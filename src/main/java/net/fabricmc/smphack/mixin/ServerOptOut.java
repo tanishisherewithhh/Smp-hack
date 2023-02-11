@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientPlayNetworkHandler.class) // IMA Remove this because it lets the server know you are using the autototem mod
+@Mixin(ClientPlayNetworkHandler.class) // IMMA Remove this because it lets the server know you are using the autototem mod
 public class ServerOptOut {
     @Inject(at = @At("TAIL"), method = "onGameJoin")
     private void sendInfoPackage(GameJoinS2CPacket packet, CallbackInfo ci) {

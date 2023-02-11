@@ -7,10 +7,12 @@ import net.minecraft.entity.effect.StatusEffects;
 
 public class Fullbright extends MainGui {
 
+    MinecraftClient mc = MinecraftClient.getInstance();
     @Override
     public void update()
     {
-        assert MinecraftClient.getInstance().player != null;
-        MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 500, 255));
+        assert mc.player != null;
+        mc.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,500,254,true,false,false));
     }
+
 }

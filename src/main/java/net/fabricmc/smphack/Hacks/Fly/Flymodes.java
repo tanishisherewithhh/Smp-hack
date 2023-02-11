@@ -1,12 +1,14 @@
 package net.fabricmc.smphack.Hacks.Fly;
 
-import net.fabricmc.smphack.ConfigController;
-import net.fabricmc.smphack.Hacks.Creativefly.AntiKick;
-import net.fabricmc.smphack.Hacks.Glider.GliderHack;
-import net.fabricmc.smphack.Hacks.Jetpack.JetpackHack;
+import net.fabricmc.smphack.GeneralConfig;
+import net.fabricmc.smphack.Hacks.Fly.Modes.BoatFly.BoatFly;
+import net.fabricmc.smphack.Hacks.Fly.Modes.Creativefly.AntiKick;
+import net.fabricmc.smphack.Hacks.Fly.Modes.Glider.GliderHack;
+import net.fabricmc.smphack.Hacks.Fly.Modes.Jetpack.JetpackHack;
 import net.minecraft.client.MinecraftClient;
 
 public enum Flymodes {
+
 
     CreativeFly {
         @Override
@@ -15,7 +17,7 @@ public enum Flymodes {
             Fly flight = new Fly();
             AntiKick antiKick = new AntiKick();
             MinecraftClient.getInstance().player.getAbilities().flying = flight.enabled;
-            boolean antikick = ConfigController.getConfig().Antikick;
+            boolean antikick = GeneralConfig.getConfig().isEnableAntikick();
             if(antikick){
                 antiKick.doAntiKick();
             }
@@ -25,7 +27,9 @@ public enum Flymodes {
     BoatFly {
         @Override
         public void fly() {
-            net.fabricmc.smphack.Hacks.BoatFly.BoatFly.onUpdate();
+            net.fabricmc.smphack.Hacks.Fly.Modes.BoatFly.BoatFly boatFly = new BoatFly();
+            boatFly.update();
+
         }
     },
     GLider {

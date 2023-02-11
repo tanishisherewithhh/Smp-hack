@@ -8,11 +8,14 @@ import net.fabricmc.smphack.Hacks.Fly.Fly;
 import net.fabricmc.smphack.Hacks.Fly.Flymodes;
 import net.fabricmc.smphack.Hacks.Jesus.Jesusm;
 import net.fabricmc.smphack.Hacks.Jesus.jesus;
+import net.fabricmc.smphack.Hacks.NoWeather.NoWeather;
 import net.fabricmc.smphack.Hacks.Nofall.Nofall;
 import net.fabricmc.smphack.Hacks.Speed.Speed;
+import net.fabricmc.smphack.Hacks.SpeedMine.SpeedMine;
 import net.fabricmc.smphack.Hacks.fullbright.Fullbright;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
@@ -21,7 +24,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
-import static net.fabricmc.smphack.Hacks.BoatFly.BoatFly.player;
+import static net.fabricmc.smphack.Hacks.Fly.Modes.BoatFly.BoatFly.player;
 
 // I know no one is gonna check the source code but for the few people who do and might need help, I am glad for you;
 // This shit took me much time. I didnt know How the fuck do you even use keybinds and onHudRender was. Heck I didnt even know what is the main class of fabric is. Bruh.
@@ -38,10 +41,13 @@ public class HUDoverlay implements HudRenderCallback {
     Speed speed = new Speed();
     jesus jes = new jesus();
     Fullbright fullbright = new Fullbright();
-
+    SpeedMine speedmine= new SpeedMine();
+    NoWeather noWeather=new NoWeather();
     int tw = 10;
     int th = 10;
     boolean Fullbright;
+    boolean NoWeather;
+
     private static final KeyBinding FlyKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "Fly toggle",
             InputUtil.Type.KEYSYM,
@@ -68,6 +74,7 @@ public class HUDoverlay implements HudRenderCallback {
             GLFW.GLFW_KEY_V,
             "Imperials"
     ));
+
     MinecraftClient mc = MinecraftClient.getInstance();
     @Override
     public void onHudRender(MatrixStack matrices, float tickDelta) {
@@ -86,10 +93,16 @@ public class HUDoverlay implements HudRenderCallback {
             TextRenderer font = mc.textRenderer;
             if(font==null || player==null){return;}
 
+            int alpha = 127;
+            int blue = 0;
+
+            int color = (alpha << 24) | (0) | blue;
+
+            Screen.fill(matrices,5,76,20,76, color);
 
 
                //To Check if Flykey is pressed
-            { //Useless brackets in order to seperate the different mods
+             //Useless brackets in order to seperate the different mods
                 if (FlyKey.wasPressed()) {
                     fly.toggled();
                 }
@@ -110,7 +123,7 @@ public class HUDoverlay implements HudRenderCallback {
                     font.draw(matrices, text, tw+2, th + 12, Formatting.RED.getColorValue());
                     //player.sendMessage(Text.of("Fly Off"));
                 }
-            }
+
                //
             {
                 if (Nofallkey.wasPressed()) {
@@ -146,20 +159,40 @@ public class HUDoverlay implements HudRenderCallback {
             if(speed.enabled)
             {
                 speed.update();
-                font.draw(matrices, "Speed", tw, th + 24, Formatting.GREEN.getColorValue());
+                font.draw(matrices, "Speed", tw+1, th + 24, Formatting.GREEN.getColorValue());
             }
             else
             {
-                font.draw(matrices, "Speed", tw, th + 24, Formatting.RED.getColorValue());
+                font.draw(matrices, "Speed", tw+1, th + 24, Formatting.RED.getColorValue());
                 assert mc.player != null;
                 mc.player.getAbilities().setWalkSpeed(speed.walkspeed);
             }
-            Fullbright= ConfigController.getConfig().Fullbright;
+            Fullbright= GeneralConfig.getConfig().Fullbright;
             if(Fullbright)
             {fullbright.update();}
             else
             {mc.player.removeStatusEffect(StatusEffects.NIGHT_VISION);}
 
+            if (GeneralConfig.enabled)
+            {
+                    font.draw(matrices, "Freecam", tw  , th + 60, Formatting.GREEN.getColorValue());
+            }
+            if (!GeneralConfig.enabled)
+            {
+                font.draw(matrices, "Freecam", tw   , th + 60, Formatting.RED.getColorValue());
+            }
+
+            speedmine.toggled();
+
+            NoWeather= GeneralConfig.getConfig().NoWeather;
+            if (NoWeather)
+            {
+                noWeather.update();
+            }
+            else
+            {
+
+            }
 
         }
     }
