@@ -3,7 +3,7 @@ package net.fabricmc.smphack.Hacks.Nofall;
 import net.fabricmc.smphack.MainGui;
 import net.minecraft.client.network.ClientPlayerEntity;
 
-import static net.fabricmc.smphack.Hacks.BoatFly.BoatFly.player;
+import static net.fabricmc.smphack.Hacks.Fly.Modes.BoatFly.BoatFly.player;
 
 public class Nofall extends MainGui {
 

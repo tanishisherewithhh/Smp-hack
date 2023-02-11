@@ -19,10 +19,9 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "net.fabricmc.smphack.MainHack"
-    ],
-    "client": [
-      "net.fabricmc.smphack.ConfigController"
+      "net.fabricmc.smphack.MainHack",
+      "net.fabricmc.smphack.GeneralConfig",
+      "net.fabricmc.smphack.HealthIndicatorsMod"
     ],
     "modmenu": [
       "net.fabricmc.smphack.config.ModMenuIntegration"
@@ -31,7 +30,6 @@
   "mixins": [
     "modid.mixins.json",
     "fireoverlaycontroller.mixins.json"
-
   ],
 
   "depends": {

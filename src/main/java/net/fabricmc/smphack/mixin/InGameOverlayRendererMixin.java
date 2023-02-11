@@ -1,6 +1,6 @@
 package net.fabricmc.smphack.mixin;
 
-import net.fabricmc.smphack.ConfigController;
+import net.fabricmc.smphack.GeneralConfig;
 import net.minecraft.client.gui.hud.InGameOverlayRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,10 +17,7 @@ public abstract class InGameOverlayRendererMixin {
             index = 3
     )
     private static float renderFireOverlay_opacity(float alpha) {
-        return ConfigController.getConfig().fireOpacity;
+        return GeneralConfig.getConfig().getFireOpacity();
     }
 
-    private static double renderFireOverlay_translate(double y) {
-        return -1.0D + ConfigController.getConfig().fireHeight;
-    }
 }

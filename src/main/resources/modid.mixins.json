@@ -4,12 +4,18 @@
   "package": "net.fabricmc.smphack.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EntityMixin"
   ],
   "client": [
+    "ClientPlayerEntityMixin",
+    "ClientPlayNetworkHandlerMixin",
     "ExampleMixin",
+    "GameRendererMixin",
+    "MiningCooldownFixMixin",
     "OnTotemPopMixin",
     "PlayerEntityRendererMixin",
-    "ServerOptOut"
+    "ServerOptOut",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

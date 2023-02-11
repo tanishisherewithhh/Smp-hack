@@ -7,11 +7,14 @@
  */
 package net.fabricmc.smphack.Hacks.Nofall;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.OnGroundOnly;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 public final class NoFallHack {
+    MinecraftClient mc = MinecraftClient.getInstance();
     public void cancelFallDamage(ClientPlayerEntity player) {
+        assert mc.player != null;
         if (player.fallDistance <= (player.isFallFlying() ? 1 : 2))
             return;
 
@@ -19,10 +22,12 @@ public final class NoFallHack {
                 && !isFallingFastEnoughToCauseDamage(player))
             return;
 
-        player.networkHandler.sendPacket(new OnGroundOnly(true));
+        player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
     }
 
     private boolean isFallingFastEnoughToCauseDamage(ClientPlayerEntity player) {
         return player.getVelocity().y < -0.5;
     }
-}
+    }
+
+
