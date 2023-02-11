@@ -31,5 +31,5 @@ jobs:
       with:
         name: Smp-hack
         path: |
-          build/libs/Smp-hack*.jar
+         Smp-hack*.jar
           !build/libs/Smp-hack-*-*.jar
