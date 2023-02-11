@@ -1,0 +1,10 @@
+v1	named	intermediary
+FIELD	net/fabricmc/smphack/mixin/ClientPlayerEntityMixin	Lnet/minecraft/client/MinecraftClient;	client	field_3937
+FIELD	net/fabricmc/smphack/mixin/EntityMixin	F	yaw	field_6031
+FIELD	net/fabricmc/smphack/mixin/EntityMixin	F	pitch	field_5965
+FIELD	net/fabricmc/smphack/mixin/EntityMixin	F	prevYaw	field_5982
+FIELD	net/fabricmc/smphack/mixin/EntityMixin	F	prevPitch	field_6004
+FIELD	net/fabricmc/smphack/mixin/GameRendererMixin	Lnet/minecraft/client/MinecraftClient;	client	field_4015
+METHOD	net/fabricmc/smphack/mixin/ClientPlayerEntityMixin	()Z	isCamera	method_3134
+METHOD	net/fabricmc/smphack/mixin/EntityMixin	()Lnet/minecraft/util/math/Vec3d;	getVelocity	method_18798
+METHOD	net/fabricmc/smphack/mixin/EntityMixin	(Lnet/minecraft/util/math/Vec3d;)V	setVelocity	method_18799
