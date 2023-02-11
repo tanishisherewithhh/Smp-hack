@@ -31,4 +31,6 @@ jobs:
       with:
         name: Smp-hack
         path: |
+        build:
+        !build
          
