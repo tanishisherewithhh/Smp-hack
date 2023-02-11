@@ -26,12 +26,11 @@ public class Fly extends MainGui {
     public void update() {
             int flymodeIndex = 1;
         if (modeKey.wasPressed()) {
-            if (flybindcounter > 4) {
+            if (flybindcounter > 5) {
                 flybindcounter = 0;
             }
             flybindcounter++;
             flymodeIndex = flybindcounter % Flymodes.values().length;
-
         }
         Flymodes flymode = Flymodes.values()[flymodeIndex];
         assert MinecraftClient.getInstance().player != null;
