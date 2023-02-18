@@ -78,6 +78,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(false)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setNoWeather(newValue))
                     .build());
+            settings.addEntry(entryBuilder.startBooleanToggle(Text.of("NoHurtCam"), GeneralConfig.getConfig().getNoHurtCam())
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setNoHurtCam(newValue))
+                    .build());
 
             settings.addEntry(entryBuilder.startBooleanToggle(Text.of("Antikick for creative fly"), GeneralConfig.getConfig().isEnableAntikick())
                     .setDefaultValue(true)

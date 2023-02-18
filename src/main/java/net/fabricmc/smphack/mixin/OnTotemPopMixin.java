@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 
+//Autototem Mixin
 @Mixin(GameRenderer.class)
 public class OnTotemPopMixin {
     private ArrayList<Packet<?>> packetsToSend = new ArrayList<>();

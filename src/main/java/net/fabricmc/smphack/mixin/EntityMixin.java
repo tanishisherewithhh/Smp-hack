@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+//Freecam mixin
 @Mixin(net.minecraft.entity.Entity.class)
 public abstract class EntityMixin {
 

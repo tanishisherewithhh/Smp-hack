@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+//Freecam Mixin
 
 @Mixin(value = WorldRenderer.class, priority = 1001)
 public class WorldRendererMixin {

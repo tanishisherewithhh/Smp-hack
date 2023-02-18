@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import java.util.Objects;
 
+//SpeedMine Mixin
 @Mixin(ClientPlayerInteractionManager.class)
 public abstract class MiningCooldownFixMixin {
     String SpeedMode;
