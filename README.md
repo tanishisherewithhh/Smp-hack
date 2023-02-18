@@ -28,7 +28,8 @@ Other Performance enchancers
 
 # How to Use:
 
-Add the jar file of the mod to your .minecraft mod folder
+Add the jar file in the [release tab](https://github.com/tanishisherewithhh/Smp-hack/releases/tag/v2.2.1) of the mod to your .minecraft mod folder
+Add the dependencies /  mods given above
 
 The new version includes being able to change several values for Jetpack mode, Fire overlay height, and opacity, etc.
 Use Mod menu settings to configure.
