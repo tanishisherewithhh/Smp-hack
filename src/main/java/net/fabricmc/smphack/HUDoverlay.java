@@ -43,6 +43,7 @@ public class HUDoverlay implements HudRenderCallback {
     Fullbright fullbright = new Fullbright();
     SpeedMine speedmine= new SpeedMine();
     NoWeather noWeather=new NoWeather();
+    float prevRainGradient;
     int tw = 10;
     int th = 10;
     boolean Fullbright;
@@ -74,6 +75,12 @@ public class HUDoverlay implements HudRenderCallback {
             GLFW.GLFW_KEY_V,
             "Imperials"
     ));
+    private static final KeyBinding VelocityKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "Veloctiy toggle",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_B,
+            "Imperials"
+    ));
 
     MinecraftClient mc = MinecraftClient.getInstance();
     @Override
@@ -82,6 +89,9 @@ public class HUDoverlay implements HudRenderCallback {
         if (mc != null )
         {
             assert mc.player != null;
+            assert MinecraftClient.getInstance().world != null;
+            prevRainGradient = MinecraftClient.getInstance().world.getRainGradient(prevRainGradient);
+
 
             //To stop rendering if debug screen or F3 menu is enabled
            if (mc.options.debugEnabled) {return;}
@@ -191,8 +201,10 @@ public class HUDoverlay implements HudRenderCallback {
             }
             else
             {
+                if(MinecraftClient.getInstance().world.isRaining()) {
+                    MinecraftClient.getInstance().world.setRainGradient(0);
+                }
             }
-
 
         }
     }

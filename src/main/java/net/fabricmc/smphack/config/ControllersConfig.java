@@ -20,8 +20,7 @@ public class ControllersConfig implements ConfigData {
     public static String CoordsSide = "BottomLeft";
     private boolean enableSpeedmine = false;
     private int flySpeed = 10;
-    private boolean enableCommand = false;
-    private String commandName = ".freecam";
+    private boolean NoHurtCam=false;
     private boolean actionBar = true;
 
     public float getJETPACK_MAX_SPEED() {
@@ -57,6 +56,12 @@ public class ControllersConfig implements ConfigData {
     }
     public void setFullbright(boolean fullbright) {
         this.Fullbright=fullbright;
+    }
+    public boolean getNoHurtCam() {
+        return NoHurtCam;
+    }
+    public void setNoHurtCam(boolean noHurtCam) {
+        this.NoHurtCam=noHurtCam;
     }
 
     public boolean getNoWeather() {
@@ -96,14 +101,6 @@ public class ControllersConfig implements ConfigData {
 
     public void setFlySpeed(int flySpeed) {
         this.flySpeed = flySpeed;
-    }
-
-    public boolean isEnableCommand() {
-        return enableCommand;
-    }
-
-    public String getCommandName() {
-        return commandName;
     }
 
     public boolean isActionBar() {

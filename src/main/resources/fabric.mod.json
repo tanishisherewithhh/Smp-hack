@@ -18,6 +18,9 @@
 
   "environment": "client",
   "entrypoints": {
+    "client": [
+      "net.fabricmc.smphack.CrystalModifier"
+    ],
     "main": [
       "net.fabricmc.smphack.MainHack",
       "net.fabricmc.smphack.GeneralConfig",

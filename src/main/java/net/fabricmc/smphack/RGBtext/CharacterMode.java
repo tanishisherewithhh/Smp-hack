@@ -56,9 +56,9 @@ public class CharacterMode {
 
                 int screenWidth = MinecraftClient.getInstance().getWindow().getScaledWidth();
                 //End of initializing variables;
-                String text = "X " + xp + "  Y " + yp + " Z " + zp;
+                String text = "X " + xp + " Y " + yp + " Z " + zp;
                 String FPS = "FPS "+fps;
-                String LOGO = "SMP-Hack v2-2-0";
+                String LOGO = "SMP-Hack v2-2-2";
                 String Speed="BPS "+bps;
                 int x_offset = 0;
 

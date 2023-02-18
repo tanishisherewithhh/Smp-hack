@@ -8,6 +8,7 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerAbilities;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,8 +17,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+//Freecam Mixin
+
 @Mixin(ClientPlayerEntity.class)
 public abstract class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
+    ClientPlayerEntity player;
 
     @Shadow
     protected abstract boolean isCamera();
@@ -53,6 +57,11 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
         if (GeneralConfig.isEnabled()) {
             this.jumping = false;
         }
+    }
+    @Inject(method = "sendMessage(Lnet/minecraft/text/Text;)V", at = @At("HEAD"))
+    private void sendMessage(Text message, CallbackInfo ci)
+    {
+        assert this.player!=null;
     }
 
     @Inject(method = "isSneaking", at = @At("HEAD"), cancellable = true)

@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "net/fabricmc/smphack/mixin/ClientConnectionMixin": {
+      "send(Lnet/minecraft/network/Packet;)V": "net.minecraft.network.ClientConnection.send(Lnet/minecraft/network/Packet;)V"
+    },
+    "net/fabricmc/smphack/mixin/MinecraftClientMixin": {
+      "tick": "net.minecraft.client.MinecraftClient.tick()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "net/fabricmc/smphack/mixin/ClientConnectionMixin": {
+        "send(Lnet/minecraft/network/Packet;)V":"net.minecraft.network.ClientConnection.send(Lnet/minecraft/network/Packet;)V"
+      },
+      "net/fabricmc/smphack/mixin/MinecraftClientMixin": {
+        "tick": "net.minecraft.client.MinecraftClient.tick()V"
+      }
+    }
+  }
+}
