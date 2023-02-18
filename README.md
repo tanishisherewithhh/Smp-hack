@@ -79,6 +79,7 @@ Skidded Hacks (some are mine)
 |Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
 |HealthIndicator mod|Shows health above players head (Now working) |
 |Fire Overlay settings| You can change the opacity of fire overlay (Height does not change for some reason)
+|Crystal Modifier|Spawns and breaks crystals faster without waiting for servers response (usefull for crystal pvp)|
 
        
 # Hacks:
@@ -95,3 +96,5 @@ Skidded Hacks (some are mine)
 |SpeedMine | HasteMode, NoBreakDelay|
 |NoWeather |-|
 |Health Indicator|-|
+|Crystal Modifier|-|
+|NoHurtCam|-|
