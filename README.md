@@ -91,7 +91,7 @@ Skidded Hacks (some are mine)
 |Nofall|-|
 |Speed|onGround, Strafe, Bhop|
 |AntiHunger|-|
-|AutoTotem| Description- Cannot disable (for now since its a mixin) and starts working once you have totem in your offhand and in inventory|
+|AutoTotem|-|
 |Freecam|-|
 |SpeedMine | HasteMode, NoBreakDelay|
 |NoWeather |-|
