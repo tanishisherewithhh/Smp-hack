@@ -60,6 +60,9 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |Freecam |Creates a fake player which acts as spectator mode and allows you to move in your world within the render distance|`UNBOUND`|
 |SpeedMine |Increase the mining speed |`Change Via Config settings`|
 |NoWeather |Removes rain and thunder |`Change Via Config settings`|
+|NoHurtCam |Removes the annoying screen shake and hurt cam when being hurt |`Change Via Config settings`|
+|AutoCrystal|Automatically breaks crystals (really fast if you use autoclicker to place)|`UNBOUND`|
+|KillAura|Automatically attacks entities and players near you|`UNBOUND`|
 
 # Features:
 
@@ -79,7 +82,7 @@ Skidded Hacks (some are mine)
 |Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
 |HealthIndicator mod|Shows health above players head (Now working) |
 |Fire Overlay settings| You can change the opacity of fire overlay (Height does not change for some reason)
-|Crystal Modifier|Spawns and breaks crystals faster without waiting for servers response (usefull for crystal pvp)|
+|Crystal Modifier|Spawns and breaks crystals faster without waiting for servers response (usefull for crystal pvp) (Removed)|
 
        
 # Hacks:
@@ -96,5 +99,6 @@ Skidded Hacks (some are mine)
 |SpeedMine | HasteMode, NoBreakDelay|
 |NoWeather |-|
 |Health Indicator|-|
-|Crystal Modifier|-|
 |NoHurtCam|-|
+|AutoCrystal|-|
+|KillAura|-|
