@@ -32,9 +32,6 @@ Add the latest jar file in the [release tab](https://github.com/tanishisherewith
 
 Add the dependencies /  mods given above
 
-The new version includes being able to change several values for Jetpack mode, Fire overlay height, and opacity, etc.
-Use Mod menu settings to configure.
-
 Steps:
 
 1:  Click on the Mods button in homescreen or when you are within a server or a world
