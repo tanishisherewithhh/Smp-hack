@@ -14,6 +14,11 @@
  
  The code in this client might cause retardation in some people so I warn you before you look
  
+ 
+ ### Check the release tab for recent changes and updates ###
+
+ 
+ 
 # Dependencies / Required Mods
 
 # [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
@@ -35,6 +40,8 @@ Other Performance enchancers
 Add the latest jar file in the [release tab](https://github.com/tanishisherewithhh/Smp-hack/releases) of the mod to your .minecraft mod folder
 
 Add the dependencies /  mods given above
+
+
 
 Steps:
 
