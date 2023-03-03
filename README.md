@@ -43,7 +43,7 @@ Steps:
 2:  Click on Smp-hack mod and then click on the settings icon in the top right
 ![step2](https://user-images.githubusercontent.com/120117618/216766951-c058eb6b-5331-4372-98e2-a863380b6e10.png)
 3:  Configure whatever you want :)
-![step3](https://user-images.githubusercontent.com/120117618/217315193-6af554cc-fc77-43e2-835d-ef47bf6b88d3.png)
+![step3](https://user-images.githubusercontent.com/120117618/222671738-674b3077-282e-4c04-92fe-a74f34b6db96.png)
 
 
 
