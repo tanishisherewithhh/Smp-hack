@@ -5,7 +5,7 @@
 
 
 
-# 1.19.3 Fabric Mod (semi hack client) used in small server and smp to play with friends.
+# 1.19.3 and above Fabric Mod (semi hack client) used in small server and smp to play with friends.
 
 
  This mod is created with the intention of learning fabric and minecraft libraries along with advanced java
@@ -14,16 +14,20 @@
  
  The code in this client might cause retardation in some people so I warn you before you look
  
-# Dependencies
+# Dependencies / Required Mods
 
 # [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
 
 # [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
 Optional-
+
 Sodium
+
 Phosphorus
+
 Starlight
+
 Other Performance enchancers
 
 # How to Use:
@@ -60,6 +64,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |NoHurtCam |Removes the annoying screen shake and hurt cam when being hurt |`Change Via Config settings`|
 |AutoCrystal|Automatically breaks crystals (really fast if you use autoclicker to place)|`UNBOUND`|
 |KillAura|Automatically attacks entities and players near you|`UNBOUND`|
+|Reach|Increases the reach of the player (currently not working) |`Y`|
 
 # Features:
 
@@ -72,17 +77,22 @@ Skidded Hacks (some are mine)
 |FPS| Shows player current FPS|
 |TPS| Shows server ticks per second (currently removed)|
 |BPS| Track your current speed |
+|Biome| Shows the biome the player is currently in |
+|Ping| Shows the player's ping in a server (updates slowly) |
 |LOGO| Smp hack logo|
-|Customisable Values| You can change the values of certain hacks for your desire using mod menu|
-|Customisable HUD| You can move the Hud elements to left or right side of the screen|
-|Customisable Keybinds| You can change the Keybinds of certain hacks for your desire|
+|Customisable Values| You can change the values of certain hacks as per your desire using mod menu|
+|Customisable HUD| You can move the Hud elements to left, right or top side of the screen|
+|Customisable Keybinds| You can change the Keybinds of certain hacks as per your desire|
 |Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
-|HealthIndicator mod|Shows health above players head (Now working) |
-|Fire Overlay settings| You can change the opacity of fire overlay (Height does not change for some reason)
+|HealthIndicator mod|Shows health above players head |
+|Fire Overlay settings| You can change the opacity of fire overlay|
 |Crystal Modifier|Spawns and breaks crystals faster without waiting for servers response (usefull for crystal pvp) (Removed)|
 
        
 # Hacks:
+
+'MAKE SURE TO READ THE KEYBINDS AND DESCRIPTION OF THE HACKS [HERE](https://github.com/tanishisherewithhh/Smp-hack#default-keybinds)'
+
 
 |Hacks |Modes |
 |-|-|
@@ -99,3 +109,6 @@ Skidded Hacks (some are mine)
 |NoHurtCam|-|
 |AutoCrystal|-|
 |KillAura|-|
+|Reach|-|
+|HUD|Left,Right,Top and variants|
+
