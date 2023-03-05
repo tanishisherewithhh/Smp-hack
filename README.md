@@ -44,13 +44,13 @@ Add the dependencies /  mods given above
 
 
 Steps
-### 1: Click on the Mods button in homescreen or when you are within a server or a world###
+### 1: Click on the Mods button in homescreen or when you are within a server or a world ###
 ![step1](https://user-images.githubusercontent.com/120117618/216766932-f4980e26-ec20-41be-a7c1-7ebaf12a3c5c.png)
 
 ### 2: Click on Smp-hack mod and then click on the settings icon in the top right ###
 ![step2](https://user-images.githubusercontent.com/120117618/222753064-3acbc9a2-fff6-4f03-b47a-6f2fd839e54a.png)
 
-### 3: Configure whatever you want :)###
+### 3: Configure whatever you want :) ###
 ![step3](https://user-images.githubusercontent.com/120117618/222671738-674b3077-282e-4c04-92fe-a74f34b6db96.png)
 
 
