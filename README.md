@@ -99,7 +99,7 @@ Skidded Hacks (some are mine)
        
 # Hacks:
 
-`MAKE SURE TO READ THE KEYBINDS AND DESCRIPTION OF THE HACKS [HERE](https://github.com/tanishisherewithhh/Smp-hack#default-keybinds)`
+`MAKE SURE TO READ THE KEYBINDS AND DESCRIPTION OF THE HACKS-` [HERE](https://github.com/tanishisherewithhh/Smp-hack#default-keybinds)
 
 
 |Hacks |Modes |
