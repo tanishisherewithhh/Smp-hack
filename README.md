@@ -70,6 +70,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |SpeedMine |Increase the mining speed |`Change Via Config settings`|
 |NoWeather |Removes rain and thunder |`Change Via Config settings`|
 |NoHurtCam |Removes the annoying screen shake and hurt cam when being hurt |`Change Via Config settings`|
+|AutoSprint | Sprints automatically for you | `Change Via Config settings` |
 |AutoCrystal|Automatically breaks crystals (really fast if you use autoclicker to place)|`UNBOUND`|
 |KillAura|Automatically attacks entities and players near you|`UNBOUND`|
 |Reach|Increases the reach of the player (currently not working) |`Y`|
@@ -118,5 +119,6 @@ Skidded Hacks (some are mine)
 |AutoCrystal|-|
 |KillAura|-|
 |Reach|-|
+|AutoSprint|-|
 |HUD|Left,Right,Top and variants|
 
