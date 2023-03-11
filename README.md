@@ -74,6 +74,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |AutoCrystal|Automatically breaks crystals (really fast if you use autoclicker to place)|`UNBOUND`|
 |KillAura|Automatically attacks entities and players near you|`UNBOUND`|
 |Reach|Increases the reach of the player (currently not working) |`Y`|
+|Autoclicker|Autoclicks either of your mouse buttons with a delay |`Either keyboard or mouse bind`|
 
 # Features:
 
@@ -95,8 +96,7 @@ Skidded Hacks (some are mine)
 |Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
 |HealthIndicator mod|Shows health above players head |
 |Fire Overlay settings| You can change the opacity of fire overlay|
-|Crystal Modifier|Spawns and breaks crystals faster without waiting for servers response (usefull for crystal pvp) (Removed)|
-
+|Auto clicker| Auto clicks your mouse buttons for you |
        
 # Hacks:
 
@@ -120,5 +120,6 @@ Skidded Hacks (some are mine)
 |KillAura|-|
 |Reach|-|
 |AutoSprint|-|
+|AutoClicker|Left Mouse Button, Right Mouse Button|
 |HUD|Left,Right,Top and variants|
 
