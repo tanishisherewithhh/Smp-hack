@@ -1,5 +1,6 @@
 
-![smphack (1)](https://user-images.githubusercontent.com/120117618/221342096-35810a5a-833e-4784-854d-7490b55862eb.png)
+![smphack logo](https://user-images.githubusercontent.com/120117618/224469620-f7d73a4f-8907-4087-b22c-72c73e427bc7.png)
+
 
 #                                                                 Smp hack
 
