@@ -6,10 +6,9 @@ public abstract class MainGui {
         enabled=!enabled;
     }
 
-    public void update() {}
+    public void update() {
 
-
-
+    }
 
 
 }

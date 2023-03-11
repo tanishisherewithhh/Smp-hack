@@ -37,11 +37,25 @@ public class ControllersConfig implements ConfigData {
         Strafe,
         Bhop
     }
+    public enum Buttons
+    {
+        RightMButton,
+        LeftMButton
+    }
+    public enum MouseKeybind
+    {
+        RightButton,
+        LeftButton
+    }
+
 
     public SpeedMinemodes SpeedmMineModes = SpeedMinemodes.HasteMode;
     public TextSide Textside = TextSide.Left;
     public CoordsSide Coordside = CoordsSide.BottomLeft;
     public SpeedMode Speedmode = SpeedMode.onGround;
+    public Buttons ButtonAuto = Buttons.RightMButton;
+    public MouseKeybind MouseKeybindButton = MouseKeybind.RightButton;
+
 
 
     public int NobreakHaste = 1;
@@ -52,6 +66,7 @@ public class ControllersConfig implements ConfigData {
     private int range = 6;//for auto crystal and killaura
     private int reach = 4;// for player
     private int speedforjesus = 1;
+    private int DelayAC = 0;
 
 
     public boolean Antikick = true;
@@ -60,6 +75,11 @@ public class ControllersConfig implements ConfigData {
     private boolean enableSpeedmine = false;
     private boolean NoHurtCam = false;
     private boolean actionBar = true;
+    private boolean AutoSprint = false;
+    private boolean AntiHunger = false;
+    private boolean MouseButton = true;
+    private boolean AutoClicker = false;
+    private boolean TextShadow = false;
 
 
 
@@ -95,6 +115,15 @@ public class ControllersConfig implements ConfigData {
         this.Antikick = Anitkick;
     }
 
+    public boolean getMouseButton() {
+        return MouseButton;
+    }
+
+    public void setMouseButton(boolean Mousebutton) {
+        this.MouseButton = Mousebutton;
+    }
+
+
     public boolean getFullbright() {
         return Fullbright;
     }
@@ -111,12 +140,36 @@ public class ControllersConfig implements ConfigData {
         this.NoHurtCam = noHurtCam;
     }
 
+    public boolean getAutoSprint() {
+        return AutoSprint;
+    }
+
+    public void setAutoSprint(boolean AutoSprint) {
+        this.AutoSprint = AutoSprint;
+    }
+
+    public boolean getAntiHunger() {
+        return AntiHunger;
+    }
+
+    public void setAntiHunger(boolean AntiHunger) {
+        this.AntiHunger = AntiHunger;
+    }
+
+
     public boolean getNoWeather() {
         return NoWeather;
     }
 
     public void setNoWeather(boolean NoWeather) {
         this.NoWeather = NoWeather;
+    }
+    public boolean getTextshadow() {
+        return TextShadow;
+    }
+
+    public void setTextShadow(boolean textShadow) {
+        this.TextShadow = textShadow;
     }
 
     public void setNobreakHaste(int haste) {
@@ -134,6 +187,16 @@ public class ControllersConfig implements ConfigData {
     public int getSpeedforjesus() {
         return speedforjesus;
     }
+
+
+    public void setDelayAC(int delay) {
+        this.DelayAC = delay;
+    }
+
+    public int getDelayAC() {
+        return DelayAC;
+    }
+
 
     public void setRange(int range) {
         this.range = range;
@@ -177,6 +240,10 @@ public class ControllersConfig implements ConfigData {
     }
     public void setEnableSpeedmine(boolean SpeedMine) {this.enableSpeedmine = SpeedMine;}
 
+    public boolean getAutoClicker() {
+        return AutoClicker;
+    }
+    public void setAutoClicker(boolean Autoclicker) {this.AutoClicker = Autoclicker;}
 
     public int getFlySpeed() {
         return flySpeed;

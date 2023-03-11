@@ -13,6 +13,7 @@ int Nobreakhaste;
 String Speedminemode;
 boolean Speedmine;
 
+
     @Override
     public void toggled()
     {

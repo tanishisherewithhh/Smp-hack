@@ -4,30 +4,24 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.smphack.Hacks.AntiHunger.AntiHunger;
+import net.fabricmc.smphack.Hacks.AutoSprint.AutoSprint;
+import net.fabricmc.smphack.Hacks.Autoclicker.Autoclicker;
 import net.fabricmc.smphack.Hacks.CrystalAura.EndCrystalBreaker;
 import net.fabricmc.smphack.Hacks.Fly.Fly;
-import net.fabricmc.smphack.Hacks.Fly.Flymodes;
-import net.fabricmc.smphack.Hacks.Jesus.Jesusm;
 import net.fabricmc.smphack.Hacks.Jesus.jesus;
 import net.fabricmc.smphack.Hacks.Killaura.KillAura;
-import net.fabricmc.smphack.Hacks.NoWeather.NoWeather;
 import net.fabricmc.smphack.Hacks.Nofall.Nofall;
 import net.fabricmc.smphack.Hacks.Reach.Reach;
 import net.fabricmc.smphack.Hacks.Speed.Speed;
-import net.fabricmc.smphack.Hacks.SpeedMine.SpeedMine;
-import net.fabricmc.smphack.Hacks.fullbright.Fullbright;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
-
 
 
 // I know no one is gonna check the source code but for the few people who do and might need help, I am glad for you;
@@ -37,25 +31,22 @@ import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class HUDoverlay implements HudRenderCallback {
-
-    //new object from ___ class
     Fly fly = new Fly();
     Nofall noFall = new Nofall();
-    Jesusm jesus = new Jesusm();
     Speed speed = new Speed();
-    jesus jes = new jesus();
-    Fullbright fullbright = new Fullbright();
-    SpeedMine speedmine= new SpeedMine();
-    NoWeather noWeather=new NoWeather();
+    public static jesus jes = new jesus();
+    Autoclicker autoclicker=new Autoclicker();
     EndCrystalBreaker endCrystalBreaker = new EndCrystalBreaker();
     KillAura killAura = new KillAura();
     Reach reach= new Reach();
+    AutoSprint autoSprint = new AutoSprint();
+    AntiHunger antiHunger=new AntiHunger();
+    rendertext text = new rendertext();
+
+
     float prevRainGradient;
     int tw = 10;
     int th = 10;
-    boolean Fullbright;
-    boolean NoWeather;
-
     public static final KeyBinding FlyKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "Fly toggle",
             InputUtil.Type.KEYSYM,
@@ -104,7 +95,15 @@ public class HUDoverlay implements HudRenderCallback {
             "Imperials"
     ));
 
+    public static final KeyBinding AutoClickerKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "AutoClicker for autocrystal",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            "Imperials"
+    ));
+
     MinecraftClient mc = MinecraftClient.getInstance();
+
     @Override
     public void onHudRender(MatrixStack matrices, float tickDelta) {
         //To avoid stupid crashes
@@ -125,147 +124,27 @@ public class HUDoverlay implements HudRenderCallback {
             TextRenderer font = mc.textRenderer;
             ClientPlayerEntity player= MinecraftClient.getInstance().player;
             if(font==null || player==null){return;}
+            text.run();
 
-            int alpha = 127;
-            int blue = 0;
-
-            int color = (alpha << 24) | (0) | blue;
-
-            Screen.fill(matrices,5,76,20,76, color);
-
-
-               //To Check if Flykey is pressed
-             //Useless brackets in order to seperate the different mods
-                if (FlyKey.wasPressed()) {
-                    fly.toggled();
-                }
-
-                //To get fly mode
-                Flymodes flymode = Flymodes.values()[fly.flybindcounter % Flymodes.values().length];
-                String flymodeText = flymode.name().toUpperCase();
-                Text text = Text.of("Fly [" + flymodeText + "]");
-
-                //To check if enabled or disabled
-                if (fly.enabled) {
-                    fly.update();
-                    flymode.fly();
-                    //render [on]
-                    font.draw(matrices, text, tw+2, th + 12, Formatting.GREEN.getColorValue());
-                } else {
-                    //render [off]
-                    font.draw(matrices, text, tw+2, th + 12, Formatting.RED.getColorValue());
-                    //player.sendMessage(Text.of("Fly Off"));
-                }
-
-               //
-            {
-                if (Nofallkey.wasPressed()) {
-                    noFall.toggled();
-                }
-                if (noFall.enabled) {
-                    noFall.update();
-                    //render [on]
-                    font.draw(matrices, "Nofall", tw, th + 48, Formatting.GREEN.getColorValue());
-                } else {
-                    //render [off]
-                    font.draw(matrices, "Nofall", tw, th + 48, Formatting.RED.getColorValue());
-                    //player.sendMessage(Text.of("Nofall Off"));
-                }
-            }
-              //
-            {
-                if(Jesuskey.wasPressed()) {
-                    jesus.toggled();
-                }
-                if (jesus.enabled) {
-                    jes.update();
-                    font.draw(matrices, "Jesus", tw, th + 36, Formatting.GREEN.getColorValue());
-                } else {
-                    font.draw(matrices, "Jesus", tw, th + 36, Formatting.RED.getColorValue());
-                }
-            }
-
-            if(SpeedKey.wasPressed())
-            {
-                speed.toggled();
-            }
-            if(speed.enabled)
-            {
-                speed.update();
-                font.draw(matrices, "Speed", tw+1, th + 24, Formatting.GREEN.getColorValue());
-            }
-            else
-            {
-                font.draw(matrices, "Speed", tw+1, th + 24, Formatting.RED.getColorValue());
-                assert mc.player != null;
-                mc.player.getAbilities().setWalkSpeed(speed.walkspeed);
-            }
-            Fullbright= GeneralConfig.getConfig().Fullbright;
-            if(Fullbright)
-            {fullbright.update();}
-            else
-            {mc.player.removeStatusEffect(StatusEffects.NIGHT_VISION);}
-
-            if (GeneralConfig.enabled)
-            {
-                    font.draw(matrices, "Freecam", tw  , th + 60, Formatting.GREEN.getColorValue());
-            }
-            if (!GeneralConfig.enabled)
-            {
-                font.draw(matrices, "Freecam", tw   , th + 60, Formatting.RED.getColorValue());
-            }
-
-            speedmine.toggled();
-
-            NoWeather= GeneralConfig.getConfig().NoWeather;
-            if (NoWeather)
-            {
-                noWeather.update();
-            }
-            else
-            {
-                if(MinecraftClient.getInstance().world.isRaining()) {
-                    MinecraftClient.getInstance().world.setRainGradient(0);
-                }
-            }
-
-            if (AutoCrystalBreakerKey.wasPressed())
-            {
-                endCrystalBreaker.toggled();
-            }
-            if (endCrystalBreaker.enabled) {
-                font.draw(matrices, "AutoCrystal", tw   , th + 72, Formatting.GREEN.getColorValue());
-            }
-            else {
-                font.draw(matrices, "AutoCrystal", tw   , th + 72, Formatting.RED.getColorValue());
-            }
-
-            if (KillauraKey.wasPressed())
-            {
-                killAura.toggled();
-            }
-            if (killAura.enabled) {
-                font.draw(matrices, "KillAura", tw   , th + 84, Formatting.GREEN.getColorValue());
-            }
-            else {
-                font.draw(matrices, "KillAura", tw   , th + 84, Formatting.RED.getColorValue());
-            }
-
-            if (ReachKey.wasPressed())
-            {
-                reach.toggled();
-            }
-            if (reach.enabled)
-            {
-                font.draw(matrices, "Reach", tw , th + 96, Formatting.GREEN.getColorValue());
-            }
-            else
-            {
-                font.draw(matrices, "Reach", tw , th + 96, Formatting.RED.getColorValue());
-            }
+            text.renderFreecam(matrices,tw,th,font);
+            text.renderFlyMode(matrices,tw,th,font,fly);
+            text.renderJesus(matrices,tw,th,font,jes);
+            text.renderNofall(matrices,tw,th,font,noFall);
+            text.renderReach(matrices,tw,th,reach,font);
+            text.renderAutoCrystalBreaker(matrices,tw,th,font,endCrystalBreaker);
+            text.renderKillAura(matrices,tw,th,font,killAura);
+            text.renderSpeed(matrices,tw,th,font,speed);
+            text.renderAutoClicker(matrices,tw,th,font);
 
 
+            text.AutoSprint(autoSprint);
+            text.AntiHunger(antiHunger);
+            text.AutoClicker(autoclicker);
+            text.NoWeather();
+            text.Fullbright();
         }
     }
+
+
 }
 

@@ -9,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 public class Nofall extends MainGui {
     private final MinecraftClient mc = MinecraftClient.getInstance();
     private final NoFallHack noFall = new NoFallHack();
+
+
     @Override
     public void toggled()
     {

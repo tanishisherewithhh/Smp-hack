@@ -27,13 +27,14 @@ public class ModMenuIntegration implements ModMenuApi {
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
 
-
             ConfigCategory settings = builder.getOrCreateCategory(Text.of("General Settings"));
             ConfigCategory Speed = builder.getOrCreateCategory(Text.of("Speed"));
             ConfigCategory Freecam = builder.getOrCreateCategory(Text.of("Freecam"));
             ConfigCategory Speedmine = builder.getOrCreateCategory(Text.of("SpeedMine"));
             ConfigCategory Fly = builder.getOrCreateCategory(Text.of("Fly"));
+            ConfigCategory AutoClicker = builder.getOrCreateCategory(Text.of("AutoClicker"));
             ConfigCategory Combat = builder.getOrCreateCategory(Text.of("Combat hack"));
+
 
             Combat.addEntry(entryBuilder.startIntSlider(Text.of("Crystal Break delay (0 = ~10 ms)"), GeneralConfig.getConfig().getCrystalBreakDelay_in_seconds(), 0, 1000)
                     .setDefaultValue(1)
@@ -49,8 +50,14 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(1)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setRange(newValue))
                     .build());
+
+
             SubCategoryBuilder Display = entryBuilder.startSubCategory(Text.of("Display HUD text"));
 
+            Display.add(entryBuilder.startBooleanToggle(Text.of("Text Shadow"), GeneralConfig.getConfig().getTextshadow())
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setTextShadow(newValue))
+                    .build());
             Display.add(entryBuilder.startEnumSelector(Text.of("Text Side"), ControllersConfig.TextSide.class, ConfigUtil.config.Textside)
                     .setDefaultValue(ControllersConfig.TextSide.Left)
                     .setEnumNameProvider(x -> Text.of(" " + x.name().replace("_", "")))
@@ -69,6 +76,16 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setFullbright(newValue))
                     .build());
 
+            settings.addEntry(entryBuilder.startBooleanToggle(Text.of("AutoSprint"), GeneralConfig.getConfig().getAutoSprint())
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setAutoSprint(newValue))
+                    .build());
+
+            settings.addEntry(entryBuilder.startBooleanToggle(Text.of("AntiHunger"), GeneralConfig.getConfig().getAntiHunger())
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setAntiHunger(newValue))
+                    .build());
+
             settings.addEntry(entryBuilder.startBooleanToggle(Text.of("NoWeather"), GeneralConfig.getConfig().getNoWeather())
                     .setDefaultValue(false)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setNoWeather(newValue))
@@ -77,6 +94,7 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(false)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setNoHurtCam(newValue))
                     .build());
+
             settings.addEntry(entryBuilder.startIntSlider(Text.of("Player Reach"), GeneralConfig.getConfig().getReach(), 1, 10)
                     .setDefaultValue(4)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setReach(newValue))
@@ -85,7 +103,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(4)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setSpeedforjesus(newValue))
                     .build());
-
+            settings.addEntry(entryBuilder.startIntSlider(Text.of("AutoClicker delay"), GeneralConfig.getConfig().getDelayAC(), 0, 100)
+                    .setDefaultValue(1)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setDelayAC(newValue))
+                    .build());
 
             settings.addEntry(entryBuilder.startFloatField(Text.of("Fire Opacity"), GeneralConfig.getConfig().getFireOpacity())
                     .setDefaultValue(1f)
@@ -159,8 +180,39 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue((int) 1f)
                     .setSaveConsumer(newValue -> GeneralConfig.getConfig().setJETPACK_MAX_SPEED(newValue))
                     .build());
+            
+            AutoClicker.addEntry(entryBuilder.startBooleanToggle(Text.of("AutoClicker"), GeneralConfig.getConfig().getAutoClicker())
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setAutoClicker(newValue))
+                    .setTooltip(Text.of("Turn AutoClicker on/off"))
+                    .build());
+            SubCategoryBuilder clickermousesubcategory = entryBuilder.startSubCategory(Text.of("Mouse settings"));
 
+            clickermousesubcategory.add(entryBuilder.startBooleanToggle(Text.of("Mouse button for Autoclicker keybind"), GeneralConfig.getConfig().getMouseButton())
+                    .setDefaultValue(true)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setMouseButton(newValue))
+                    .build());
 
+            clickermousesubcategory.add(entryBuilder.startEnumSelector(Text.of("Mouse Keybind Button for autoclicker"), ControllersConfig.MouseKeybind.class, ConfigUtil.config.MouseKeybindButton)
+                    .setDefaultValue(ControllersConfig.MouseKeybind.RightButton)
+                    .setEnumNameProvider(x -> Text.of(" " + x.name().replace("_", "")))
+                    .setTooltip(Text.of("This will select the keybind as a mouse button"))
+                    .setSaveConsumer(newValue -> ConfigUtil.config.MouseKeybindButton = newValue).build());
+
+            AutoClicker.addEntry(clickermousesubcategory.build());
+
+            AutoClicker.addEntry(entryBuilder.startEnumSelector(Text.of("Auto click button"), ControllersConfig.Buttons.class, ConfigUtil.config.ButtonAuto)
+                    .setDefaultValue(ControllersConfig.Buttons.RightMButton)
+                    .setEnumNameProvider(x -> Text.of(" " + x.name().replace("_", "")))
+                    .setTooltip(Text.of("Mouse button which will be auto clicked"))
+                    .setSaveConsumer(newValue -> ConfigUtil.config.ButtonAuto = newValue).build());
+
+            AutoClicker.addEntry(entryBuilder.startIntSlider(Text.of("AutoClicker delay"), GeneralConfig.getConfig().getDelayAC(), 0, 100)
+                    .setDefaultValue(1)
+                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setDelayAC(newValue))
+                    .build());
+            
+            
             Freecam.addEntry(entryBuilder.startIntSlider(Text.of("Freecam fly Speed"), GeneralConfig.getConfig().getFlySpeed(), 1, 30)
                     .setDefaultValue(10)
                    .setSaveConsumer(newValue -> GeneralConfig.getConfig().setFlySpeed(newValue))

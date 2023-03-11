@@ -43,8 +43,7 @@ public class jesus extends MainGui {
             e.setVelocity(e.getVelocity().x, -0.005, e.getVelocity().z);
             e.setOnGround(true);
             if (mc.options.forwardKey.wasPressed()) {
-                movePlayerForward(player, (float) (speed/1));
-                e.setSprinting(true);
+                movePlayerForward(player, (speed/3F));
             }
         }
     }

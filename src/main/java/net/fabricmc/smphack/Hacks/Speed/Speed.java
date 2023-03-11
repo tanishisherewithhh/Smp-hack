@@ -18,6 +18,7 @@ public class Speed extends MainGui {
     private boolean jumping;
 
 
+
     @Override
     public void toggled() {
         enabled = !enabled;

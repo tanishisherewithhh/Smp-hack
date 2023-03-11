@@ -21,6 +21,7 @@ public class KillAura extends MainGui {
     private int delay;
     private double range;
 
+
     @Override
     public void toggled() {
         super.toggled();

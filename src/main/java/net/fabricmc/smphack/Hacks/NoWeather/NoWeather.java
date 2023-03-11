@@ -22,6 +22,7 @@ public class NoWeather extends MainGui {
     boolean NoWeather;
 
 
+
     @Override
     public void update()
     {

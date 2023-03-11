@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffects;
 public class Fullbright extends MainGui {
 
     MinecraftClient mc = MinecraftClient.getInstance();
+
     @Override
     public void update()
     {

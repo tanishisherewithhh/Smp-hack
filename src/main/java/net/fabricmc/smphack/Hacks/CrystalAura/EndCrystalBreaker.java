@@ -17,6 +17,7 @@ public class EndCrystalBreaker extends MainGui {
     private double distance;
 
 
+
     @Override
     public void toggled()
     {

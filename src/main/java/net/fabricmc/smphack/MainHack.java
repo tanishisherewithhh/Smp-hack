@@ -21,7 +21,7 @@ public class MainHack implements ModInitializer {
         HudRenderCallback.EVENT.register(new HUDoverlay());
         instance = this;
         CharacterMode.init();
-        LOGGER.info("Client Initialised");
+            LOGGER.info("Client Initialised");
     }
 
 }

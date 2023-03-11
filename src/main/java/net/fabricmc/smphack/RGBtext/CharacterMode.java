@@ -38,8 +38,10 @@ public class CharacterMode {
     static int tsw=10; // Text width or X position for displaying and for changing postition of the text
     static int tsh= windowHeight+1; // Text width or Y position for displaying and for changing postition of the text
     static String bps;
-    static  String biomeName;
     static float hue;
+
+    static boolean TextShadow;
+
     public static void coordinates(PlayerEntity player)
     {
         assert mc.player != null;
@@ -77,7 +79,7 @@ public class CharacterMode {
                 Biome = String.format("%s Biome", capitalize(biomeName));
             }
         }
-        return Biome;
+        return biomes;
     }
 
     public static void displayposandcolour(TextRenderer font) {
@@ -103,14 +105,15 @@ public class CharacterMode {
                 //end of stupid checks
 
                 //Start of variables
+                TextShadow=GeneralConfig.getConfig().getTextshadow();
                 String TextSide = String.valueOf(config.Textside);
                 String CoordSide = String.valueOf(config.Coordside);
                 coordinates(player);
                 displayposandcolour(font);
                 int x_offset = 0;
                 //End of initializing variables;
-                String text = "X " + xp + " Y " + yp + " Z " + zp;
-                String LOGO = "SMP-Hack v2-4-0";
+                String text = "XYZ " + xp + " " + yp + " " + zp;
+                String LOGO = "SMP-Hack v2-4-1";
 
                 int stringWidth = font.getWidth(LOGO);
                 for (int i = 0; i < LOGO.length(); i++) {
@@ -119,7 +122,13 @@ public class CharacterMode {
                     int charWidth = font.getWidth(String.valueOf(e));
                     //tsw + ((float) (stringWidth - charWidth) / 2)
                     tsw=10;
-                    font.draw(matrices, String.valueOf(e), -29+((float) (stringWidth - charWidth) / 2)+x_offset, th, color.getRGB());
+                    if (TextShadow) {
+                        font.drawWithShadow(matrices, String.valueOf(e), -29 + ((float) (stringWidth - charWidth) / 2) + x_offset, th, color.getRGB(), false);
+                    }
+                    else
+                    {
+                        font.draw(matrices, String.valueOf(e), -29 + ((float) (stringWidth - charWidth) / 2) + x_offset, th, color.getRGB());
+                    }
                     x_offset += charWidth;
                 }
 
@@ -131,7 +140,7 @@ public class CharacterMode {
                     colors[i] = Color.getHSBColor(hue + hueOffset, 1, 1);
                 }
 
-// Draw coordinate text
+                // Draw coordinate text
                 for (int i = 0; i < text.length(); i++) {
                     char c = text.charAt(i);
                     int width = font.getWidth(String.valueOf(c));
@@ -154,7 +163,14 @@ public class CharacterMode {
                         }
 
                     }
-                    font.draw(matrices, String.valueOf(c), tsw, y, colors[i].getRGB());
+                    if (TextShadow) {
+                        font.drawWithShadow(matrices, String.valueOf(c), tsw, y, colors[i].getRGB(), false);
+                    }
+                    else
+                    {
+                        font.draw(matrices, String.valueOf(c), tsw, y, colors[i].getRGB());
+
+                    }
                 }
 
 // Draw FPS and BPS text
@@ -166,7 +182,6 @@ public class CharacterMode {
                 int SpeedWidth = font.getWidth(Speed);
                 int pingX = screenWidth - PingWidth - 10;
                 int biomeX = pingX - font.getWidth(Biome)+30;
-                int biome2X =screenWidth-470;
                 switch (TextSide) {
                     case "TopRight" -> {
                         FPS = fps + " FPS";
@@ -174,11 +189,19 @@ public class CharacterMode {
                         Ping= ping +" Ping";
                         int pingY = tsh+27;
                         int biomeY = tsh+39;
-                        font.draw(matrices, FPS, screenWidth - FPSWidth - 10, tsh+3, colors[0].getRGB());
-                        font.draw(matrices, Speed, screenWidth - SpeedWidth - 10, tsh+15, colors[0].getRGB());
-                        font.draw(matrices, Ping, pingX, pingY, colors[0].getRGB());
-                        font.draw(matrices, Biome, biomeX, biomeY, colors[0].getRGB());
-
+                        if (TextShadow) {
+                            font.drawWithShadow(matrices, FPS, screenWidth - FPSWidth - 10, tsh + 3, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Speed, screenWidth - SpeedWidth - 10, tsh + 15, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Ping, pingX, pingY, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Biome, biomeX, biomeY, colors[0].getRGB(), false);
+                        }
+                        else
+                        {
+                            font.draw(matrices, FPS, screenWidth - FPSWidth - 10, tsh + 3, colors[0].getRGB());
+                            font.draw(matrices, Speed, screenWidth - SpeedWidth - 10, tsh + 15, colors[0].getRGB());
+                            font.draw(matrices, Ping, pingX, pingY, colors[0].getRGB());
+                            font.draw(matrices, Biome, biomeX, biomeY, colors[0].getRGB());
+                        }
 
                     }
                     case "BottomRight" -> {
@@ -187,21 +210,38 @@ public class CharacterMode {
                         Ping= ping+" Ping";
                         tsw = screenWidth - SpeedWidth - 10;
                         y = windowHeight - 24;
-                        int pingY = windowHeight - 48;
-                        int biomeY = windowHeight-36;
-                        font.draw(matrices, FPS, screenWidth - FPSWidth - 10, tsh=windowHeight-12, colors[0].getRGB());
-                        font.draw(matrices, Speed, tsw, y, colors[0].getRGB());
-                        font.draw(matrices, Ping, pingX, pingY, colors[0].getRGB());
-                        font.draw(matrices, Biome, biomeX, biomeY, colors[0].getRGB());
+                        int pingY = windowHeight -36;
+                        int biomeY = windowHeight-48;
+                        if (TextShadow) {
+                            font.drawWithShadow(matrices, FPS, screenWidth - FPSWidth - 10, tsh = windowHeight - 12, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Speed, tsw, y, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Ping, pingX, pingY, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Biome, biomeX, biomeY, colors[0].getRGB(), false);
+                        }
+                        else
+                        {
+                            font.draw(matrices, FPS, screenWidth - FPSWidth - 10, tsh = windowHeight - 12, colors[0].getRGB());
+                            font.draw(matrices, Speed, tsw, y, colors[0].getRGB());
+                            font.draw(matrices, Ping, pingX, pingY, colors[0].getRGB());
+                            font.draw(matrices, Biome, biomeX, biomeY, colors[0].getRGB());
+                        }
 
                     }
                     case "Left" -> {
                         tsh=10;
                         tsw=10;
-                        font.draw(matrices, FPS, tsw, tsh+108, colors[0].getRGB());
-                        font.draw(matrices, Speed, tsw, tsh+120, colors[0].getRGB());
-                        font.draw(matrices, Ping, tsw, tsh+132, colors[0].getRGB());
-                        font.draw(matrices, Biome, tsw, tsh+144, colors[0].getRGB());
+                        if (TextShadow) {
+                            font.drawWithShadow(matrices, FPS, tsw, tsh + 120, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Speed, tsw, tsh + 132, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Ping, tsw, tsh + 144, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Biome, tsw-4, tsh + 156, colors[0].getRGB(), false);
+                        }
+                        else {
+                            font.draw(matrices, FPS, tsw, tsh + 120, colors[0].getRGB() );
+                            font.draw(matrices, Speed, tsw, tsh + 132, colors[0].getRGB() );
+                            font.draw(matrices, Ping, tsw, tsh + 144, colors[0].getRGB() );
+                            font.draw(matrices, Biome, tsw-4, tsh + 156, colors[0].getRGB());
+                        }
                     }
                 }
             }

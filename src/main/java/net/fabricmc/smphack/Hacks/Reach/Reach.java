@@ -6,7 +6,9 @@ import net.fabricmc.smphack.MainGui;
 public class Reach  extends MainGui {
 
    public static boolean enabled=false;
-   @Override
+
+
+    @Override
     public void toggled()
     {
         enabled=!enabled;
