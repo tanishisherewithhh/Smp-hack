@@ -22,19 +22,18 @@
  
 # Dependencies / Required Mods
 
-# [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
+# [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Optional)
 
 # [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
 Optional-
 
-Sodium
+Sodium,
 
-Phosphorus
+Phosphorus,
 
-Starlight
-
-Other Performance enchancers
+Starlight,
+and some other Performance enchancers
 
 # How to Use:
 
@@ -42,17 +41,7 @@ Add the latest jar file in the [release tab](https://github.com/tanishisherewith
 
 Add the dependencies /  mods given above
 
-
-
-Steps
-### 1: Click on the Mods button in homescreen or when you are within a server or a world ###
-![step1](https://user-images.githubusercontent.com/120117618/216766932-f4980e26-ec20-41be-a7c1-7ebaf12a3c5c.png)
-
-### 2: Click on Smp-hack mod and then click on the settings icon in the top right ###
-![step2](https://user-images.githubusercontent.com/120117618/222753064-3acbc9a2-fff6-4f03-b47a-6f2fd839e54a.png)
-
-### 3: Configure whatever you want :) ###
-![step3](https://user-images.githubusercontent.com/120117618/222671738-674b3077-282e-4c04-92fe-a74f34b6db96.png)
+### PRESS RIGHT SHIFT OR CHANGE THE BIND IN THE CONTROL SETTINGS OF MINECRAFT TO OPEN THE CONFIG SCREEN (or just use modmenu)
 
 
 
@@ -76,6 +65,8 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |KillAura|Automatically attacks entities and players near you|`UNBOUND`|
 |Reach|Increases the reach of the player (currently not working) |`Y`|
 |Autoclicker|Autoclicks either of your mouse buttons with a delay |`Either keyboard or mouse bind`|
+|AimBot|Automatically aims at the nearest entity|`UNBOUND`|
+|Scaffold |Automatically places blocks below the player |`UNBOUND`|
 
 # Features:
 
@@ -90,7 +81,7 @@ Skidded Hacks (some are mine)
 |BPS| Track your current speed |
 |Biome| Shows the biome the player is currently in |
 |Ping| Shows the player's ping in a server (updates slowly) |
-|LOGO| Smp hack logo|
+|Custom Config screen| Open the config screen with any key you like!|
 |Customisable Values| You can change the values of certain hacks as per your desire using mod menu|
 |Customisable HUD| You can move the Hud elements to left, right or top side of the screen|
 |Customisable Keybinds| You can change the Keybinds of certain hacks as per your desire|
@@ -98,6 +89,7 @@ Skidded Hacks (some are mine)
 |HealthIndicator mod|Shows health above players head |
 |Fire Overlay settings| You can change the opacity of fire overlay|
 |Auto clicker| Auto clicks your mouse buttons for you |
+
        
 # Hacks:
 
@@ -122,5 +114,7 @@ Skidded Hacks (some are mine)
 |Reach|-|
 |AutoSprint|-|
 |AutoClicker|Left Mouse Button, Right Mouse Button|
+|AimBot|-|
+|Scaffold|-|
 |HUD|Left,Right,Top and variants|
 
