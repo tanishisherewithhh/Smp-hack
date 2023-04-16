@@ -42,13 +42,6 @@ public abstract class GameRendererMixin {
             this.client.setCameraEntity(this.cameraEntityOriginal);
             this.cameraEntityOriginal = null;
         }
-//        else if (FeatureToggle.TWEAK_ELYTRA_CAMERA.getBooleanValue() && Hotkeys.ELYTRA_CAMERA.getKeybind().isKeybindHeld()) {
-//            Entity entity = this.client.getCameraEntity();
-//
-//            if (entity != null) {
-//                MiscUtils.setEntityRotations(entity, this.realYaw, this.realPitch);
-//            }
-//        }
     }
 
     @Inject(method = "renderHand", at = @At("HEAD"), cancellable = true)

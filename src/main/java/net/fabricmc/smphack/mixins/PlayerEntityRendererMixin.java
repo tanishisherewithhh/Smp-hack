@@ -21,15 +21,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //HealthIndicator mixin
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+
     public PlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
         super(ctx, model, shadowRadius);
     }
-
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("RETURN"))
     public void renderHealth(AbstractClientPlayerEntity abstractClientPlayerEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
         if (HealthIndicatorsMod.toggled && !abstractClientPlayerEntity.isMainPlayer() && !abstractClientPlayerEntity.isInvisibleTo(MinecraftClient.getInstance().player)) {
             matrixStack.push();
-
             double d = this.dispatcher.getSquaredDistanceToCamera(abstractClientPlayerEntity);
 
             matrixStack.translate(0, abstractClientPlayerEntity.getHeight() + 0.5f, 0);
@@ -44,6 +43,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
 
             float pixelSize = 0.025F;
             matrixStack.scale(pixelSize, pixelSize, pixelSize);
+
 
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder vertexConsumer = tessellator.getBuffer();
@@ -95,7 +95,6 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             }
 
             tessellator.draw();
-
             matrixStack.pop();
         }
     }

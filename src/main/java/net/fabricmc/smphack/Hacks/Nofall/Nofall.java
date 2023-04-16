@@ -30,7 +30,7 @@ public class Nofall extends MainGui {
             noFall.cancelFallDamage(player);
 
             // Do something else, like teleport the player to a safe location.
-            BlockPos safePos = new BlockPos(player.getX(), player.getY() + 10, player.getZ());
+            BlockPos safePos = new BlockPos((int) player.getX(), (int) (player.getY() + 10), (int) player.getZ());
             player.teleport(player.getX(), player.getY() + 10, player.getZ());
         }
     }

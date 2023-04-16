@@ -5,17 +5,19 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
 public class GliderHack {
+    static final float moveSpeed = 1.2F;
     public static void updateGlider() {
         MinecraftClient mc = MinecraftClient.getInstance();
         ClientPlayerEntity player = mc.player;
+        assert player != null;
+        Vec3d v = player.getVelocity();
 
-        final float fallSpeed = 0.1F;
-        final float moveSpeed = 1.2F;
+        if (player.isOnGround() || player.isTouchingWater() || player.isInLava()
+                || player.isClimbing() || v.y >= 0)
+            return;
+        final float fallSpeed = 0.13F;
 
-        if (player != null) {
-            Vec3d v = player.getVelocity();
-            player.setVelocity(v.x, Math.max(v.y, -fallSpeed), v.z);
-            player.airStrafingSpeed *= moveSpeed;
-        }
+        player.setVelocity(v.x, Math.max(v.y, -fallSpeed), v.z);
+
     }
 }

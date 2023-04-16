@@ -49,11 +49,11 @@ public class jesus extends MainGui {
     }
 
     private boolean isSubmerged(Vec3d pos) {
-        BlockPos bp = new BlockPos(pos);
+        BlockPos bp = BlockPos.ofFloored(pos);
         assert mc.world != null;
         FluidState state = mc.world.getFluidState(bp);
 
-        return !state.isEmpty() && pos.y - bp.getY() <= state.getHeight();
+        return !state.isEmpty() && pos.getY() - bp.getY() <= state.getHeight();
     }
     public static void movePlayerForward(PlayerEntity player, float speed) {
         float yaw = player.getYaw();

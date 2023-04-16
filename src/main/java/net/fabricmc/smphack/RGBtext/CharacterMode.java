@@ -67,16 +67,12 @@ public class CharacterMode {
 
     public static String getBiome() {
         String biomes = "";
-        String Biome="";
         if (mc.world != null) {
-
-
             Optional<RegistryKey<net.minecraft.world.biome.Biome>> biome = mc.world.getBiome(player.getBlockPos()).getKey();
 
             if (biome.isPresent()) {
                 String biomeName =  Text.translatable("biome." + biome.get().getValue().getNamespace() + "." + biome.get().getValue().getPath()).getString();;
                 biomes = Text.translatable("text.biome", capitalize(biomeName)).getString();
-                Biome = String.format("%s Biome", capitalize(biomeName));
             }
         }
         return biomes;
@@ -113,7 +109,7 @@ public class CharacterMode {
                 int x_offset = 0;
                 //End of initializing variables;
                 String text = "XYZ " + xp + " " + yp + " " + zp;
-                String LOGO = "SMP-Hack v2-4-1";
+                String LOGO = "SMP-Hack v2-4-2";
 
                 int stringWidth = font.getWidth(LOGO);
                 for (int i = 0; i < LOGO.length(); i++) {
@@ -173,7 +169,7 @@ public class CharacterMode {
                     }
                 }
 
-// Draw FPS and BPS text
+              // Draw FPS, BPS, Ping and Biome text
                 String FPS = "FPS " + fps;
                 String Speed = "BPS " + bps;
                 String Ping = "Ping " + ping;
@@ -231,16 +227,16 @@ public class CharacterMode {
                         tsh=10;
                         tsw=10;
                         if (TextShadow) {
-                            font.drawWithShadow(matrices, FPS, tsw, tsh + 120, colors[0].getRGB(), false);
-                            font.drawWithShadow(matrices, Speed, tsw, tsh + 132, colors[0].getRGB(), false);
-                            font.drawWithShadow(matrices, Ping, tsw, tsh + 144, colors[0].getRGB(), false);
-                            font.drawWithShadow(matrices, Biome, tsw-4, tsh + 156, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, FPS, tsw, tsh + 132, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Speed, tsw, tsh + 144, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Ping, tsw, tsh + 156, colors[0].getRGB(), false);
+                            font.drawWithShadow(matrices, Biome, tsw-4, tsh + 168, colors[0].getRGB(), false);
                         }
                         else {
-                            font.draw(matrices, FPS, tsw, tsh + 120, colors[0].getRGB() );
-                            font.draw(matrices, Speed, tsw, tsh + 132, colors[0].getRGB() );
-                            font.draw(matrices, Ping, tsw, tsh + 144, colors[0].getRGB() );
-                            font.draw(matrices, Biome, tsw-4, tsh + 156, colors[0].getRGB());
+                            font.draw(matrices, FPS, tsw, tsh + 132, colors[0].getRGB() );
+                            font.draw(matrices, Speed, tsw, tsh + 144, colors[0].getRGB() );
+                            font.draw(matrices, Ping, tsw, tsh + 156, colors[0].getRGB() );
+                            font.draw(matrices, Biome, tsw-4, tsh + 168, colors[0].getRGB());
                         }
                     }
                 }

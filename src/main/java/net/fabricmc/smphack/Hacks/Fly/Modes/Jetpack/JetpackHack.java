@@ -18,7 +18,7 @@ public class JetpackHack {
         JETPACK_MAX_SPEED = GeneralConfig.getConfig().getJETPACK_MAX_SPEED();
         if (player != null) if (InputUtil.isKeyPressed(mc.getWindow().getHandle(), SPACE_KEY)) {
             Vec3d motion = player.getVelocity();
-            Vec3d vel = new Vec3d(motion.x * 1.5, 0.25, motion.z * 1.5);
+            Vec3d vel = new Vec3d(motion.x*(JETPACK_MAX_SPEED/2), 0.25, motion.z*(JETPACK_MAX_SPEED/2));
             if (vel.lengthSquared() > JETPACK_MAX_SPEED * JETPACK_MAX_SPEED)
                 vel = vel.normalize().multiply(JETPACK_MAX_SPEED);
 

@@ -15,7 +15,7 @@ public class GeneralConfig implements ModInitializer {
 
     public static boolean enabled = false;
     private static boolean spectator;
-    public static final KeyBinding FreecamKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Freecam toggle", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Imperials"));
+    public static final KeyBinding FreecamKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Freecam toggle", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Hacks Keybind"));
 
 
     @Override

@@ -18,6 +18,29 @@ public class ControllersConfig implements ConfigData {
         NoBreakDelay
     }
 
+    public enum nametagcolour {
+        BLACK,
+        DARK_BLUE,
+        DARK_GREEN,
+        DARK_AQUA,
+        DARK_RED,
+        DARK_PURPLE,
+        GOLD,
+        GRAY,
+        DARK_GRAY,
+        BLUE,
+        GREEN,
+        AQUA,
+        RED,
+        LIGHT_PURPLE,
+        YELLOW,
+        WHITE
+    }
+
+
+
+
+
     public enum TextSide {
         Left,
         TopRight,
@@ -55,7 +78,8 @@ public class ControllersConfig implements ConfigData {
     public SpeedMode Speedmode = SpeedMode.onGround;
     public Buttons ButtonAuto = Buttons.RightMButton;
     public MouseKeybind MouseKeybindButton = MouseKeybind.RightButton;
-
+    public nametagcolour EntityNametagcolour= nametagcolour.WHITE;
+    public nametagcolour PlayerNametagcolour= nametagcolour.WHITE;
 
 
     public int NobreakHaste = 1;
@@ -63,7 +87,7 @@ public class ControllersConfig implements ConfigData {
     private int CrystalBreakDelay_in_seconds = 1;
     private int KillAuraDelay = 8;
     private int boatflySpeed = 1;
-    private int range = 6;//for auto crystal and killaura
+    private int range = 4;//for auto crystal and killaura
     private int reach = 4;// for player
     private int speedforjesus = 1;
     private int DelayAC = 0;
@@ -79,7 +103,21 @@ public class ControllersConfig implements ConfigData {
     private boolean AntiHunger = false;
     private boolean MouseButton = true;
     private boolean AutoClicker = false;
+    private boolean AutoClickerToggle = false;
+    private boolean nametagshadow = false;
     private boolean TextShadow = false;
+    private boolean SwordAxeOnly = false;
+    private boolean MultiTarget = false;
+    private boolean AutoDelayKA = true;
+    private boolean NoAccidentalFireworks = false;
+
+
+    private int playernametagcolour = 0xFF;
+
+
+    public int getPlayernametagcolour() {
+        return playernametagcolour;
+    }
 
 
 
@@ -122,7 +160,13 @@ public class ControllersConfig implements ConfigData {
     public void setMouseButton(boolean Mousebutton) {
         this.MouseButton = Mousebutton;
     }
+    public boolean getNoAccidentalFireworks() {
+        return NoAccidentalFireworks;
+    }
 
+    public void setNoAccidentalFireworks(boolean fireworks) {
+        this.NoAccidentalFireworks = fireworks;
+    }
 
     public boolean getFullbright() {
         return Fullbright;
@@ -148,6 +192,31 @@ public class ControllersConfig implements ConfigData {
         this.AutoSprint = AutoSprint;
     }
 
+    public boolean getSwordAxeOnly() {
+        return SwordAxeOnly;
+    }
+
+    public void setSwordAxeOnly(boolean Swordaxeonly) {
+        this.SwordAxeOnly = Swordaxeonly;
+    }
+
+    public boolean getMultiTarget() {
+        return MultiTarget;
+    }
+
+    public void setMultiTarget(boolean Multitarget) {
+        this.MultiTarget = Multitarget;
+    }
+
+    public boolean getAutoDelayKA() {
+        return AutoDelayKA;
+    }
+
+    public void setAutoDelayKA(boolean Autodelay) {
+        this.AutoDelayKA = Autodelay;
+    }
+
+
     public boolean getAntiHunger() {
         return AntiHunger;
     }
@@ -170,6 +239,13 @@ public class ControllersConfig implements ConfigData {
 
     public void setTextShadow(boolean textShadow) {
         this.TextShadow = textShadow;
+    }
+    public boolean getnametagshadow() {
+        return nametagshadow;
+    }
+
+    public void setNametagshadow(boolean textShadow) {
+        this.nametagshadow = textShadow;
     }
 
     public void setNobreakHaste(int haste) {
@@ -245,6 +321,11 @@ public class ControllersConfig implements ConfigData {
     }
     public void setAutoClicker(boolean Autoclicker) {this.AutoClicker = Autoclicker;}
 
+    public boolean getAutoClickerToggle() {
+        return AutoClickerToggle;
+    }
+    public void setAutoClickerToggle(boolean AutoclickerT) {this.AutoClickerToggle = AutoclickerT;}
+
     public int getFlySpeed() {
         return flySpeed;
     }
@@ -263,4 +344,3 @@ public class ControllersConfig implements ConfigData {
 
 
 }
-

@@ -14,9 +14,9 @@ public class HealthIndicatorsMod implements ModInitializer {
     @Override
     public void onInitialize() {
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                " Health Indicator toggle",
+                "Health Indicator toggle",
                 InputUtil.UNKNOWN_KEY.getCode(),
-                "Health Indicator"
+                "Smphack Mod"
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

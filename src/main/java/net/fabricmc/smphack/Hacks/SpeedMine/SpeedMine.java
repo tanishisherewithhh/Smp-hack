@@ -19,13 +19,14 @@ boolean Speedmine;
     {
         assert MinecraftClient.getInstance().player != null;
         assert GeneralConfig.getConfig()!=null;
-         Speedminemode= String.valueOf(ConfigUtil.config.SpeedmMineModes);
+         Speedminemode=String.valueOf(ConfigUtil.config.SpeedmMineModes);
          Speedmine = GeneralConfig.getConfig().isEnableSpeedmine();
       if (Speedmine) {
           if (Speedminemode.equals("HasteMode")) {
               MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 100, (Nobreakhaste = GeneralConfig.getConfig().getNobreakHaste()) - 1, true, false, false));
           } else {
-              MinecraftClient.getInstance().player.removeStatusEffect(StatusEffects.HASTE);
+              //NoBreakDelay can be found in the mixin: MiningCooldownFixMixin
+            MinecraftClient.getInstance().player.removeStatusEffect(StatusEffects.HASTE);
           }
       }
     }

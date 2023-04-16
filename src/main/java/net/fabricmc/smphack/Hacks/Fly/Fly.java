@@ -16,7 +16,7 @@ public class Fly extends MainGui {
             "Change Fly mode ",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_M,
-            "Imperials"
+            "Smphack Mod"
     ));
 
 

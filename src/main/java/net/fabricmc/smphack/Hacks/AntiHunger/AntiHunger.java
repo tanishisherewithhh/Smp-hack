@@ -3,7 +3,6 @@ package net.fabricmc.smphack.Hacks.AntiHunger;
 import net.fabricmc.smphack.GeneralConfig;
 import net.fabricmc.smphack.MainGui;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.Packet;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 
 import java.util.Objects;
@@ -72,7 +71,7 @@ public class AntiHunger extends MainGui {
         }
     }
 
-    private void sendPacket(Packet<?> packet) {
+    private void sendPacket(ClientCommandC2SPacket packet) {
         Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(packet);
     }
 }

@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GameRenderer.class)
 public class MixinGameRenderer {
     boolean Nohurtcam;
-    @ModifyArg(at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;"), method = "bobViewWhenHurt", require = 4)
+    @ModifyArg(at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;"), method = "bobView", require = 1)
     public float changeBobIntensity(float value) {
-        return (float) (0* value);
+        return  (0* value);
     }
 
-    @Inject(method = "bobViewWhenHurt", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "bobView", at = @At("HEAD"), cancellable = true)
     public void disableHurtCam(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         Nohurtcam=GeneralConfig.getConfig().getNoHurtCam();
         if (!Nohurtcam) ci.cancel();

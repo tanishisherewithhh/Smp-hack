@@ -3,6 +3,8 @@ package net.fabricmc.smphack.Hacks.Reach;
 import net.fabricmc.smphack.GeneralConfig;
 import net.fabricmc.smphack.MainGui;
 
+
+//Does not work shit
 public class Reach  extends MainGui {
 
    public static boolean enabled=false;

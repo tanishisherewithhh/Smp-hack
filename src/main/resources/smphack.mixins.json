@@ -16,7 +16,12 @@
     "MixinInGameHud",
     "OnTotemPopMixin",
     "PlayerEntityRendererMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "EntityRendererMixin",
+    "InGameOverlayRendererMixin",
+    "LivingEntityRendererMixin",
+    "MixinMinecraftClient",
+    "MixinWorldRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
