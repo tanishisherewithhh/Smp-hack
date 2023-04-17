@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.fabricmc.smphack.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ClientPlayerEntityMixin",
+    "EntityMixin"
+  ],
+  "client": [
+    "ClientPlayNetworkHandlerMixin",
+    "GameRendererMixin",
+    "MiningCooldownFixMixin",
+    "MixinClientPlayerInteractionManager",
+    "MixinGameRenderer",
+    "MixinInGameHud",
+    "OnTotemPopMixin",
+    "PlayerEntityRendererMixin",
+    "WorldRendererMixin",
+    "EntityRendererMixin",
+    "InGameOverlayRendererMixin",
+    "LivingEntityRendererMixin",
+    "MixinMinecraftClient",
+    "MixinWorldRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
