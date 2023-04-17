@@ -6,17 +6,23 @@
 
 
 
-# 1.19.3 and above Fabric Mod (semi hack client) used in small server and smp to play with friends.
+# 1.19.4 and above fabric Mod used in small servers and smps' to play with friends.
+### Introduction
+This is my first mod created and since I found that the hack community in latest versions is really vast, I thought it would be a better approach to use this community for learning purpose.
+This mod was heavily inspired from various hack clients including wurst,bleachhack,FabricHax,Altwer-Flyhack,etc.
+I created this mod with the intention of learning advanced java libraries and fabric mod API.
+I have also designed the code such that if anyone else wants to use my project to understand and write code for themselves, they can freely use it.
+This mod is not created in the intention of earning/exploiting on servers against hacking
+Use this mod at your own risk and together with your friends.
 
+### What is the purpose of this mod?
+This mod is a semi-hack client which people can use for semi-vanilla experience.It is for people who want to use some minor hacks like Fly,Jesus,AntiFall,etc. without using large and heavily featured hack clients which can lead to loss of fun in the gameplay. This is also created to play on anarchy servers with semi-vanilla experience, where the person only has basic hacks like elytra,combat and some render hacks which do not change the gameplay massively and allow for basic survival.
 
- This mod is created with the intention of learning fabric and minecraft libraries along with advanced java
- 
- This mod is also created for beginners who want to start learning java libs and create some hacks or mods for themselves 
- 
- The code in this client might cause retardation in some people so I warn you before you look
+Actual purpose may be regarded in the minds of the User. I heavily encourage to use large hacks such as Meteor,wurst,bleachhack,etc. if you want to full-on-hacking experience in anarchy servers.
  
  
- ### Check the release tab for recent changes and updates ###
+ 
+### Check the release tab for recent changes and updates ###
 
  
  
