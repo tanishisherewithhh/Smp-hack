@@ -41,6 +41,12 @@ Phosphorus,
 Starlight,
 and some other Performance enchancers
 
+## Credits
+WurstClient,
+Bleachhack,
+[Fly-hack](https://github.com/Altwer/Minecraft-1.19.3-FlyHack-Pack-Fabric/blob/main/SourceCode/src/main/java/net/fabricmc/flyhack/NoFallHack.java),
+[Muppet](https://modrinth.com/mod/muppet/version/1.0.0) (Very cool and nice dev)
+
 # How to Use:
 
 Add the latest jar file in the [release tab](https://github.com/tanishisherewithhh/Smp-hack/releases) of the mod to your .minecraft mod folder
@@ -48,7 +54,6 @@ Add the latest jar file in the [release tab](https://github.com/tanishisherewith
 Add the dependencies /  mods given above
 
 ### PRESS RIGHT SHIFT OR CHANGE THE BIND IN THE CONTROL SETTINGS OF MINECRAFT TO OPEN THE CONFIG SCREEN (or just use modmenu)
-
 
 
 # Default Keybinds:
