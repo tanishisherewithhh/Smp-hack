@@ -46,6 +46,8 @@ WurstClient,
 Bleachhack,
 [Fly-hack](https://github.com/Altwer/Minecraft-1.19.3-FlyHack-Pack-Fabric/blob/main/SourceCode/src/main/java/net/fabricmc/flyhack/NoFallHack.java),
 [Freecam](https://github.com/hashalite/Freecam),
+[AutoTotem](https://modrinth.com/mod/autototem),
+[Health Indicators Mod](https://modrinth.com/mod/playerhealthindicators),
 [Muppet](https://modrinth.com/mod/muppet/version/1.0.0) (Very cool and nice dev)
 
 # How to Use:
