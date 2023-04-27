@@ -32,14 +32,6 @@ Actual purpose may be regarded in the minds of the User. I heavily encourage to 
 
 # [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
-Optional-
-
-Sodium,
-
-Phosphorus,
-
-Starlight,
-and some other Performance enchancers
 
 ## Credits
 WurstClient,
@@ -81,6 +73,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |Autoclicker|Autoclicks either of your mouse buttons with a delay |`Either keyboard or mouse bind`|
 |AimBot|Automatically aims at the nearest entity|`UNBOUND`|
 |Scaffold |Automatically places blocks below the player |`UNBOUND`|
+|Auto Replace| Automatically replaces tools,armor,blocks,items,elytra,etc. in your inventory |`Change Via Config settings`|
 
 # Features:
 
@@ -99,10 +92,12 @@ Skidded Hacks (some are mine)
 |Customisable Values| You can change the values of certain hacks as per your desire using mod menu|
 |Customisable HUD| You can move the Hud elements to left, right or top side of the screen|
 |Customisable Keybinds| You can change the Keybinds of certain hacks as per your desire|
-|Auto AutoTotem| Cannot disable and works once once you have a totem in you offhand and inventory|
+|Auto AutoTotem| Cannot disable and works once once you have a totem in your offhand and inventory|
 |HealthIndicator mod|Shows health above players head |
 |Fire Overlay settings| You can change the opacity of fire overlay|
 |Auto clicker| Auto clicks your mouse buttons for you |
+|Muppet | Shows your player in a small model on the top right corner|
+|Armor and Totem display | Shows the armor with it durability the player is currently wearing and shows the number of totems the player has|
 
        
 # Hacks:
@@ -124,11 +119,12 @@ Skidded Hacks (some are mine)
 |Health Indicator|-|
 |NoHurtCam|-|
 |AutoCrystal|-|
-|KillAura|-|
+|KillAura|MultiTarge,SingleTarget,Axe and Sword only|
 |Reach|-|
 |AutoSprint|-|
 |AutoClicker|Left Mouse Button, Right Mouse Button|
 |AimBot|-|
 |Scaffold|-|
+|AutoReplace|-|
 |HUD|Left,Right,Top and variants|
 
