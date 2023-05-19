@@ -40,6 +40,7 @@ Bleachhack,
 [Freecam](https://github.com/hashalite/Freecam),
 [AutoTotem](https://modrinth.com/mod/autototem),
 [Health Indicators Mod](https://modrinth.com/mod/playerhealthindicators),
+[X-Refill (aka AutoRefill)](https://www.curseforge.com/minecraft/mc-mods/x-refill/files/3616860),
 [Muppet](https://modrinth.com/mod/muppet/version/1.0.0) (Very cool and nice dev)
 
 # How to Use:
@@ -74,6 +75,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |AimBot|Automatically aims at the nearest entity|`UNBOUND`|
 |Scaffold |Automatically places blocks below the player |`UNBOUND`|
 |Auto Replace| Automatically replaces tools,armor,blocks,items,elytra,etc. in your inventory |`Change Via Config settings`|
+|AutoTool| Automatically switches to the first best available tool for mining|`Change Via Config settings`|
 
 # Features:
 
@@ -118,7 +120,7 @@ Skidded Hacks (some are mine)
 |NoWeather |-|
 |Health Indicator|-|
 |NoHurtCam|-|
-|AutoCrystal|-|
+|AutoCrystal|OnlyOwn, AntiSuicide|
 |KillAura|MultiTarge,SingleTarget,Axe and Sword only|
 |Reach|-|
 |AutoSprint|-|
@@ -126,5 +128,6 @@ Skidded Hacks (some are mine)
 |AimBot|-|
 |Scaffold|-|
 |AutoReplace|-|
+|AutoTool|-|
 |HUD|Left,Right,Top and variants|
 
