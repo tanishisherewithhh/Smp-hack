@@ -101,6 +101,15 @@ Skidded Hacks (some are mine)
 |Muppet | Shows your player in a small model on the top right corner|
 |Armor and Totem display | Shows the armor with it durability the player is currently wearing and shows the number of totems the player has|
 
+# HUD
+
+### Hud may differ in recent updates
+
+
+![2023-05-22_18 11 19](https://github.com/tanishisherewithhh/Smp-hack/assets/120117618/d5451c98-031e-4439-a778-be054aafbea5)
+![2023-05-22_18 11 25](https://github.com/tanishisherewithhh/Smp-hack/assets/120117618/95abd4d4-fc70-43db-88da-03a45e4997b6)
+
+
        
 # Hacks:
 
