@@ -76,6 +76,7 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |Scaffold |Automatically places blocks below the player |`UNBOUND`|
 |Auto Replace| Automatically replaces tools,armor,blocks,items,elytra,etc. in your inventory |`Change Via Config settings`|
 |AutoTool| Automatically switches to the first best available tool for mining|`Change Via Config settings`|
+|FakePlayer| Spawns an fakeplayer entity in the world with the name of your choice |`Spawned using command`|
 
 # Features:
 
@@ -100,6 +101,8 @@ Skidded Hacks (some are mine)
 |Auto clicker| Auto clicks your mouse buttons for you |
 |Muppet | Shows your player in a small model on the top right corner|
 |Armor and Totem display | Shows the armor with it durability the player is currently wearing and shows the number of totems the player has|
+|FakePlayer| Spawns an fakeplayer entity in the world with the name of your choice |
+
 
 # HUD
 
@@ -109,6 +112,13 @@ Skidded Hacks (some are mine)
 ![2023-05-22_18 11 19](https://github.com/tanishisherewithhh/Smp-hack/assets/120117618/d5451c98-031e-4439-a778-be054aafbea5)
 ![2023-05-22_18 11 25](https://github.com/tanishisherewithhh/Smp-hack/assets/120117618/95abd4d4-fc70-43db-88da-03a45e4997b6)
 
+## FakePlayer ##
+
+### Spawn an Fakeplayer entity with the name of your choice using the following command:
+`/fakeplayer spawn <name>`
+
+### Delete the spawned Fakeplayer entity using the following command:
+`/fakeplayer clear`
 
        
 # Hacks:
@@ -138,5 +148,6 @@ Skidded Hacks (some are mine)
 |Scaffold|-|
 |AutoReplace|-|
 |AutoTool|-|
+|FakePlayer|Name, Spawn, Clear|
 |HUD|Left,Right,Top and variants|
 
