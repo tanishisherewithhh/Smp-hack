@@ -1,5 +1,6 @@
 package net.fabricmc.smphack.Hacks.Scaffold;
 
+import net.fabricmc.smphack.Hacks.RefillUtil.RefillUtil;
 import net.fabricmc.smphack.MainGui;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -7,6 +8,7 @@ import net.minecraft.block.FallingBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -55,6 +57,13 @@ public class Scaffold extends MainGui {
         if (!BlockUtils.getState(belowPlayer).getMaterial().isReplaceable())
             return;
 
+        // check if player has block in main hand
+        ItemStack mainHandStack = MC.player.getMainHandStack();
+        if (!mainHandStack.isEmpty() && mainHandStack.getItem() instanceof BlockItem) {
+            scaffoldTo(belowPlayer);
+            return;
+        }
+
         // search blocks in hotbar
         int newSlot = -1;
         for (int i = 0; i < 9; i++) {
@@ -92,18 +101,23 @@ public class Scaffold extends MainGui {
         MC.player.getInventory().selectedSlot = oldSlot;
     }
 
+
     private void scaffoldTo(BlockPos belowPlayer) {
         // tries to place a block directly under the player
-        if (placeBlock(belowPlayer))
+        if (placeBlock(belowPlayer)) {
+            RefillUtil.tryRefill(MC.player, MC.player.getMainHandStack(), EquipmentSlot.MAINHAND);
             return;
+        }
 
         // if that doesn't work, tries to place a block next to the block that's
         // under the player
         Direction[] sides = Direction.values();
         for (Direction side : sides) {
             BlockPos neighbor = belowPlayer.offset(side);
-            if (placeBlock(neighbor))
+            if (placeBlock(neighbor)) {
+                RefillUtil.tryRefill(MC.player, MC.player.getMainHandStack(), EquipmentSlot.MAINHAND);
                 return;
+            }
         }
 
         // if that doesn't work, tries to place a block next to a block that's
@@ -114,10 +128,13 @@ public class Scaffold extends MainGui {
                     continue;
 
                 BlockPos neighbor = belowPlayer.offset(side).offset(side2);
-                if (placeBlock(neighbor))
+                if (placeBlock(neighbor)) {
+                    RefillUtil.tryRefill(MC.player, MC.player.getMainHandStack(), EquipmentSlot.MAINHAND);
                     return;
+                }
             }
     }
+
 
     private boolean placeBlock(BlockPos pos) {
         Vec3d eyesPos = new Vec3d(MC.player.getX(),

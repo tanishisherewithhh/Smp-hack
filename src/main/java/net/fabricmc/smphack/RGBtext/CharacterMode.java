@@ -122,7 +122,7 @@ public class CharacterMode {
                 int x_offset = 0;
                 //End of initializing variables;
                 String text = "XYZ " + xp + " " + yp + " " + zp;
-                String LOGO = "SMP-Hack v2-4-4";
+                String LOGO = "SMP-Hack v2-4-5";
 
                 int stringWidth = font.getWidth(LOGO);
                 for (int i = 0; i < LOGO.length(); i++) {

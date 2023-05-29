@@ -1,24 +1,15 @@
 package net.fabricmc.smphack.Hacks.Scaffold;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.InvalidIdentifierException;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public enum BlockUtils
 {;
-
-
     private static final MinecraftClient MC = MinecraftClient.getInstance();
 
     public static BlockState getState(BlockPos pos)
@@ -26,89 +17,14 @@ public enum BlockUtils
         assert MC.world != null;
         return MC.world.getBlockState(pos);
     }
-
-    public static Block getBlock(BlockPos pos)
-    {
-        return getState(pos).getBlock();
-    }
-
-    public static int getId(BlockPos pos)
-    {
-        return Block.getRawIdFromState(getState(pos));
-    }
-
-    public static String getName(BlockPos pos)
-    {
-        return getName(getBlock(pos));
-    }
-
-    public static String getName(Block block)
-    {
-        return Registries.BLOCK.getId(block).toString();
-    }
-
-    /**
-     * @param name
-     *            a String containing the block's name ({@link Identifier})
-     * @return the requested block, or <code>minecraft:air</code> if the block
-     *         doesn't exist.
-     */
-    public static Block getBlockFromName(String name)
-    {
-        try
-        {
-            return Registries.BLOCK.get(new Identifier(name));
-
-        }catch(InvalidIdentifierException e)
-        {
-            return Blocks.AIR;
-        }
-    }
-
-
-
-
-    public static float getHardness(BlockPos pos)
-    {
-        return getState(pos).calcBlockBreakingDelta(MC.player, MC.world, pos);
-    }
-
     private static VoxelShape getOutlineShape(BlockPos pos)
     {
         return getState(pos).getOutlineShape(MC.world, pos);
     }
 
-    public static Box getBoundingBox(BlockPos pos)
-    {
-        return getOutlineShape(pos).getBoundingBox().offset(pos);
-    }
-
     public static boolean canBeClicked(BlockPos pos)
     {
         return getOutlineShape(pos) != VoxelShapes.empty();
-    }
-
-    public static ArrayList<BlockPos> getAllInBox(BlockPos from, BlockPos to)
-    {
-        ArrayList<BlockPos> blocks = new ArrayList<>();
-
-        BlockPos min = new BlockPos(Math.min(from.getX(), to.getX()),
-                Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()));
-        BlockPos max = new BlockPos(Math.max(from.getX(), to.getX()),
-                Math.max(from.getY(), to.getY()), Math.max(from.getZ(), to.getZ()));
-
-        for(int x = min.getX(); x <= max.getX(); x++)
-            for(int y = min.getY(); y <= max.getY(); y++)
-                for(int z = min.getZ(); z <= max.getZ(); z++)
-                    blocks.add(new BlockPos(x, y, z));
-
-        return blocks;
-    }
-
-    public static ArrayList<BlockPos> getAllInBox(BlockPos center, int range)
-    {
-        return getAllInBox(center.add(-range, -range, -range),
-                center.add(range, range, range));
     }
 
     public static Stream<BlockPos> getAllInBoxStream(BlockPos from, BlockPos to)
@@ -148,11 +64,5 @@ public enum BlockUtils
                 * (max.getY() - min.getY() + 1) * (max.getZ() - min.getZ() + 1);
 
         return stream.limit(limit);
-    }
-
-    public static Stream<BlockPos> getAllInBoxStream(BlockPos center, int range)
-    {
-        return getAllInBoxStream(center.add(-range, -range, -range),
-                center.add(range, range, range));
     }
 }

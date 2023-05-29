@@ -1,6 +1,7 @@
 package net.fabricmc.smphack.Hacks.Speed;
 
 import net.fabricmc.smphack.GeneralConfig;
+import net.fabricmc.smphack.Hacks.AntiHunger.AntiHunger;
 import net.fabricmc.smphack.MainGui;
 import net.fabricmc.smphack.config.ConfigUtil;
 import net.minecraft.client.MinecraftClient;
@@ -34,6 +35,9 @@ public class Speed extends MainGui {
             Speed = GeneralConfig.getConfig().getSpeed_multiplier();
             Speedmode = String.valueOf(ConfigUtil.config.Speedmode);
         }
+        AntiHunger antiHunger = new AntiHunger();
+        antiHunger.update();
+
         assert MinecraftClient.getInstance().player != null;
         HungerManager hungerManager = MinecraftClient.getInstance().player.getHungerManager();
         hungerManager.add(2, 5);

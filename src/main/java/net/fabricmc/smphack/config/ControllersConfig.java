@@ -124,12 +124,10 @@ public class ControllersConfig implements ConfigData {
     private int playernametagcolour = 0xFF;
 
 
+
     public int getPlayernametagcolour() {
         return playernametagcolour;
     }
-
-
-
     public float getJETPACK_MAX_SPEED() {
         return JETPACK_MAX_SPEED;
     }

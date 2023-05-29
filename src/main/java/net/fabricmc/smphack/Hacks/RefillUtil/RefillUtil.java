@@ -37,7 +37,7 @@ public class RefillUtil {
         if (!GeneralConfig.getConfig().getAutoHotbar() || player.isCreative()) {
             return;
         }
-        if (stack.isEmpty() || stack.isStackable() && stack.getCount() > 1 || stack.isDamageable() && stack.getMaxDamage() - stack.getDamage() > 1 || stack.getItem() == Items.TOTEM_OF_UNDYING) {
+        if (stack.isEmpty() || stack.isStackable() && stack.getCount() > 5 || stack.isDamageable() && stack.getMaxDamage() - stack.getDamage() > 1 || stack.getItem() == Items.TOTEM_OF_UNDYING) {
             return;
         }
         // if open screen don't do anything
@@ -56,10 +56,11 @@ public class RefillUtil {
             EXEC.schedule(() -> {
                 manager.clickSlot(0, current, 0, SlotActionType.PICKUP, player);
                 // rollback if set it wrong or can set empty back
-                EXEC.schedule(() -> manager.clickSlot(0, next, 0, SlotActionType.PICKUP, player), 100, TimeUnit.MILLISECONDS);
-            }, 100, TimeUnit.MILLISECONDS);
+                EXEC.schedule(() -> manager.clickSlot(0, next, 0, SlotActionType.PICKUP, player), 10, TimeUnit.MILLISECONDS);
+            }, 10, TimeUnit.MILLISECONDS);
         }, player, stack, slot);
     }
+
 
     private static void ifRefill(BiConsumer<Integer, Integer> refillSetter, PlayerEntity player, ItemStack stack, EquipmentSlot slot) {
         int current = getEquipmentSlotInScreen(slot, player.getInventory().selectedSlot);

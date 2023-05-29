@@ -3,6 +3,7 @@ package net.fabricmc.smphack;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.smphack.Hacks.Fakeplayer.FakePlayerCommand;
 import net.fabricmc.smphack.RGBtext.CharacterMode;
 import net.fabricmc.smphack.config.ConfigScreen;
 import net.minecraft.client.MinecraftClient;
@@ -15,6 +16,7 @@ public class MainHack  implements ModInitializer {
     @Override
     public void onInitialize() {
         assert MinecraftClient.getInstance().player != null;
+        FakePlayerCommand.register();
         HudRenderCallback.EVENT.register(new HUDoverlay());
         CharacterMode.init();
             LOGGER.info("Smphack Initialised");
