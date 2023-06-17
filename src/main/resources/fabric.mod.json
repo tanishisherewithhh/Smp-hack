@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "smp-hack",
+  "version": "${version}",
+
+  "name": "Smp hack",
+  "description": "This is an light hack client with only some features which you can use to play on smps with your friends and troll them. Please use this at your own risk",
+  "authors": [
+    "tanishisherewith#0231"
+  ],
+  "contact": {
+    "homepage": "https://github.com/tanishisherewithhh/Smp-hack#readme",
+    "issues": "https://github.com/tanishisherewithhh/Smp-hack/issues",
+    "sources": "https://github.com/tanishisherewithhh/Smp-hack"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/smphack/smphack.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.fabricmc.smphack.hud.DynamicHudClient"
+    ],
+    "main": [
+      "net.fabricmc.smphack.MainHack",
+      "net.fabricmc.smphack.GeneralConfig",
+      "net.fabricmc.smphack.HealthIndicatorsMod"
+    ],
+    "modmenu": [
+      "net.fabricmc.smphack.config.ModMenuIntegration"
+    ]
+},
+  "mixins": [
+    "smphack.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric-api": "*",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "cloth-config2": ">=11.0.99"
+  },
+  "suggests": {
+    "ModMenu": "*"
+  }
+}
