@@ -102,11 +102,13 @@ Skidded Hacks (some are mine)
 |Muppet | Shows your player in a small model on the top right corner|
 |Armor and Totem display | Shows the armor with it durability the player is currently wearing and shows the number of totems the player has|
 |FakePlayer| Spawns an fakeplayer entity in the world with the name of your choice |
+|Hud Editor| Customise the position of certain hud text and widgets as per your desire in the new update|
 
 
 # HUD
 
 ### Hud may differ in recent updates
+## Customisable Hud has been implemented in `v2.5.0` using [DynamicHud](https://github.com/V-Fast/DynamicHUD)
 
 
 ![2023-05-22_18 11 19](https://github.com/tanishisherewithhh/Smp-hack/assets/120117618/d5451c98-031e-4439-a778-be054aafbea5)
