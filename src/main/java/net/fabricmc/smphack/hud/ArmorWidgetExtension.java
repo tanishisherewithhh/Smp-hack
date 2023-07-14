@@ -2,7 +2,7 @@ package net.fabricmc.smphack.hud;
 
 import com.tanishisherewith.dynamichud.helpers.ColorHelper;
 import com.tanishisherewith.dynamichud.helpers.TextureHelper;
-import com.tanishisherewith.dynamichud.util.TextGenerator;
+import com.tanishisherewith.dynamichud.interfaces.TextGenerator;
 import com.tanishisherewith.dynamichud.widget.armor.ArmorWidget;
 import net.fabricmc.smphack.config.ConfigUtil;
 import net.minecraft.client.MinecraftClient;
@@ -27,8 +27,8 @@ public class ArmorWidgetExtension extends ArmorWidget {
      * @param textGenerator
      * @param color
      */
-    public ArmorWidgetExtension(MinecraftClient client, EquipmentSlot slot, float xPercent, float yPercent, boolean enabled, TextureHelper.Position currentTextPosition, TextGenerator textGenerator, Supplier<Color> color) {
-        super(client, slot, xPercent, yPercent, enabled, currentTextPosition, textGenerator, color);
+    public ArmorWidgetExtension(MinecraftClient client, EquipmentSlot slot, float xPercent, float yPercent, boolean enabled, TextureHelper.Position currentTextPosition, TextGenerator textGenerator, Supplier<Color> color, boolean TextBackground,String label) {
+        super(client, slot, xPercent, yPercent, enabled, currentTextPosition, textGenerator, color,TextBackground,label);
     }
     private static final int COLOR_GREEN = 0x00FF00;
     private static final int COLOR_YELLOW = 0xFFFF00;

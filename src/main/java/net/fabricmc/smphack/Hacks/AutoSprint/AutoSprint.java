@@ -14,8 +14,10 @@ public class AutoSprint extends MainGui {
     @Override
     public void update() {
         AutoSprint= GeneralConfig.getConfig().getAutoSprint();
-        assert mc.player != null;
-        Entity e = mc.player.getRootVehicle();
-        e.setSprinting(AutoSprint);
+        if (mc.player!=null && !mc.player.getRootVehicle().isSprinting()) {
+            Entity e = mc.player.getRootVehicle();
+            boolean alreadySprinting=e.isSprinting();
+            e.setSprinting(AutoSprint || alreadySprinting);
+        }
     }
 }

@@ -17,17 +17,29 @@ public class MuppetWidget extends Widget {
      *
      * @param client The Minecraft client instance
      */
-    public MuppetWidget(MinecraftClient client,float xPercent, float yPercent,boolean enabled) {
-        super(client);
+    public MuppetWidget(MinecraftClient client,float xPercent, float yPercent,boolean enabled, String label) {
+        super(client, label);
         this.xPercent=xPercent;
         this.yPercent=yPercent;
         this.enabled=enabled;
     }
 
     @Override
-    public WidgetBox getWidgetBox() {
-        return new WidgetBox(this.getX() - 18, this.getY() - 55, this.getX() + 18, this.getY() + 12);
+    public void setTextGeneratorFromLabel() {
+
     }
+
+    @Override
+    public WidgetBox getWidgetBox() {
+        int boxWidth = 25; // Set the desired width of the widget box
+        int boxHeight = 55; // Set the desired height of the widget box
+        int x1 = this.getX() - boxWidth;
+        int y1 = this.getY() - boxHeight;
+        int x2 = this.getX() + boxWidth;
+        int y2 = this.getY() + boxHeight/3;
+        return new WidgetBox(x1, y1, x2, y2);
+    }
+
 
 
     @Override
@@ -36,9 +48,12 @@ public class MuppetWidget extends Widget {
         //SHOW MUPPET
         if (showMuppet) {
             ClientPlayerEntity player=MinecraftClient.getInstance().player;
+            assert player != null;
             float yaw = MathHelper.wrapDegrees(player.prevYaw + (player.getYaw() - player.prevYaw) * mc.getTickDelta());
             float pitch = player.getPitch();
-            InventoryScreen.drawEntity(drawContext,getX(),getY(), (int)25.0, -yaw, -pitch, player);
+            int x = this.getX();
+            int y = this.getY();
+            InventoryScreen.drawEntity(drawContext,x,y, 25, -yaw, -pitch, player);
         }
     }
     @Override

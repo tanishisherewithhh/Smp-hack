@@ -33,11 +33,22 @@ public class ConfigScreen {
                 .setDefaultValue(1)
                 .setSaveConsumer(newValue -> GeneralConfig.getConfig().setCrystalBreakDelay_in_seconds(newValue))
                 .build());
+        Combat.addEntry(entryBuilder.startBooleanToggle(Text.of("SmartCrystal"), GeneralConfig.getConfig().getSmartCrystal())
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> GeneralConfig.getConfig().setSmartCrystal(newValue))
+                .setTooltip(Text.of("Smartly breaks crystal based on nearby entities and damage threshold"))
+                .build());
+        Combat.addEntry(entryBuilder.startFloatField(Text.of("SmartCrystal"), (float) GeneralConfig.getConfig().getSmartCrystalDamageThreshold())
+                .setDefaultValue(5f)
+                .setSaveConsumer(newValue -> GeneralConfig.getConfig().setSmartCrystalDamageThreshold(newValue))
+                .setTooltip(Text.of("Min Damage Threshold so the crystal would break"))
+                .build());
+
         Combat.addEntry(entryBuilder.startBooleanToggle(Text.of("AntiSuicide"), GeneralConfig.getConfig().getAntiSuicide())
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> GeneralConfig.getConfig().setAntiSuicide(newValue))
                 .build());
-        Combat.addEntry(entryBuilder.startIntSlider(Text.of("Min Damage to player for antisuicide"), GeneralConfig.getConfig().getASdamage(), 1, 32)
+        Combat.addEntry(entryBuilder.startIntSlider(Text.of("Min Damage to Player"), GeneralConfig.getConfig().getASdamage(), 1, 32)
                 .setDefaultValue(10)
                 .setSaveConsumer(newValue -> GeneralConfig.getConfig().setASdamage(newValue))
                 .build());

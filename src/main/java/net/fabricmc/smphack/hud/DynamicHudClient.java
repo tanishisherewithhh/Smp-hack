@@ -3,15 +3,14 @@ package net.fabricmc.smphack.hud;
 import com.tanishisherewith.dynamichud.DynamicHUD;
 import com.tanishisherewith.dynamichud.helpers.ColorHelper;
 import com.tanishisherewith.dynamichud.helpers.TextureHelper;
+import com.tanishisherewith.dynamichud.interfaces.IWigdets;
+import com.tanishisherewith.dynamichud.interfaces.WidgetLoading;
 import com.tanishisherewith.dynamichud.util.DynamicUtil;
-import com.tanishisherewith.dynamichud.util.TextGenerator;
-import com.tanishisherewith.dynamichud.util.WidgetLoading;
-import com.tanishisherewith.dynamichud.widget.IWigdets;
 import com.tanishisherewith.dynamichud.widget.Widget;
 import com.tanishisherewith.dynamichud.widget.item.ItemWidget;
 import com.tanishisherewith.dynamichud.widget.text.TextWidget;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.smphack.GeneralConfig;
 import net.fabricmc.smphack.config.ConfigUtil;
 import net.minecraft.client.MinecraftClient;
@@ -46,7 +45,6 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
     static double deltaX, deltaY, deltaZ, floatbps;
     static String bps;
     protected List<Widget> widgets = new ArrayList<>();
-    protected boolean WidgetAdded = false;
     private DynamicUtil dynamicutil;
     private String ArmorDurabilityDisplay;
     private Color color = Color.RED;
@@ -97,8 +95,6 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
             if (biome.isPresent()) {
                 String biomeName = Text.translatable("biome." + biome.get().getValue().getNamespace() + "." + biome.get().getValue().getPath()).getString();
                 biomes = Text.translatable("text.biome", capitalize(biomeName)).getString();
-                assert MinecraftClient.getInstance().world != null;
-                assert MinecraftClient.getInstance().player != null;
             }
         }
         return biomes.trim();
@@ -112,8 +108,7 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
         DynamicHUD.setAbstractScreen(new MoveableScreenExtension(Text.of("Editor Screen"), dynamicutil));
         DynamicHUD.setIWigdets(new DynamicHudClient());
 
-        HudRenderCallback.EVENT.register((matrices, tickDelta) -> {
-            dynamicutil.render(matrices, tickDelta);
+        ClientTickEvents.START_WORLD_TICK.register(world -> {
             if(mc.player!=null) {
                 player=mc.player;
                 getVariableValues();
@@ -123,26 +118,33 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
 
     @Override
     public void addWigdets(DynamicUtil dynamicUtil) {
-        assert mc.player != null;
-        boolean shadow= GeneralConfig.getConfig().getTextshadow();
-        widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.HEAD, 0.1f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.HEAD)), () -> color));
-        widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.CHEST, 0.15f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.CHEST)), () -> color));
-        widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.LEGS, 0.2f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.LEGS)), () -> color));
-        widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.FEET, 0.25f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.FEET)), () -> color));
+        if (mc.player!=null) {
+            boolean shadow = GeneralConfig.getConfig().getTextshadow();
+            widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.HEAD, 0.1f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.HEAD)), () -> color, true, "HeadArmor"));
+            widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.CHEST, 0.15f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.CHEST)), () -> color, true, "ChestArmor"));
+            widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.LEGS, 0.2f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.LEGS)), () -> color, true, "LegArmor"));
+            widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.FEET, 0.25f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.FEET)), () -> color, true, "FootArmor"));
 
-        widgets.add(new TextWidget(mc,"FPS: ",()-> String.valueOf(fps),0.05f,0.7f,shadow,true,false,Color.WHITE.getRGB(),Color.WHITE.getRGB(),true));
-        widgets.add(new TextWidget(mc,"BPS: ",()-> String.valueOf(bps),0.05f,0.75f,shadow,true,false,Color.WHITE.getRGB(),Color.WHITE.getRGB(),true));
-        widgets.add(new TextWidget(mc,"Ping: ",()-> String.valueOf(ping),0.05f,0.8f,shadow,true,false,Color.WHITE.getRGB(),Color.WHITE.getRGB(),true));
-        widgets.add(new TextWidget(mc,"",()-> String.valueOf(Biome),0.05f,0.85f,shadow,true,false,Color.WHITE.getRGB(),Color.WHITE.getRGB(),true));
+            widgets.add(new TextWidget(mc, "FPS: ", () -> String.valueOf(fps), 0.05f, 0.7f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "BPS: ", () -> String.valueOf(bps), 0.05f, 0.75f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "Ping: ", () -> String.valueOf(ping), 0.05f, 0.8f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "", () -> String.valueOf(Biome), 0.05f, 0.85f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
 
-        widgets.add(new ItemWidget(mc, Items.TOTEM_OF_UNDYING::getDefaultStack, 0.15f, 0.15f, true, TextureHelper.Position.ABOVE, () -> String.valueOf(mc.player.getInventory().count(Items.TOTEM_OF_UNDYING)), () -> Color.YELLOW));
+            widgets.add(new ItemWidget(mc, Items.TOTEM_OF_UNDYING::getDefaultStack, 0.3f, 0.9f, true, TextureHelper.Position.ABOVE, () -> String.valueOf(mc.player.getInventory().count(Items.TOTEM_OF_UNDYING)), () -> Color.YELLOW, true, "Totem"));
 
-        widgets.add(new MuppetWidget(mc, 0.9f, 0.8f, true));
+            widgets.add(new MuppetWidget(mc, 0.9f, 0.8f, true, "InGameMuppet"));
 
-        for (Widget wigdet : widgets) {
-            dynamicUtil.getWidgetManager().addWidget(wigdet);
+            for (Widget wigdet : widgets) {
+                dynamicUtil.getWidgetManager().addWidget(wigdet);
+            }
+            dynamicUtil.WidgetAdded = true;
+
         }
-        WidgetAdded = true;
+    }
+
+    @Override
+    public void addMainMenuWigdets(DynamicUtil dynamicUtil) {
+        dynamicUtil.MainMenuWidgetAdded=true;
     }
 
     public void setColor(Color color) {
@@ -179,61 +181,36 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
     public void loadWigdets(DynamicUtil dynamicUtil) {
         dynamicUtil.getWidgetManager().setWidgetLoading(new DynamicHudClient());
         List<Widget> widgets = dynamicUtil.getWidgetManager().loadWigdets(WIDGETS_FILE);
-        int armorIndex = 0;
-        int textIndex = 0;
         assert mc.player != null;
-        TextGenerator[] ArmorWidgetText = new TextGenerator[]{
-                () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.HEAD)),
-                () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.CHEST)),
-                () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.LEGS)),
-                () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.FEET))
-        };
-        TextGenerator[] TextWidgetText = new TextGenerator[]{
-                ()-> String.valueOf(fps),
-                ()-> String.valueOf(bps),
-                ()-> String.valueOf(ping),
-                ()-> String.valueOf(Biome)
-        };
+
+        Widget.addTextGenerator("HeadArmor", () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.HEAD)));
+        Widget.addTextGenerator("ChestArmor", () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.CHEST)));
+        Widget.addTextGenerator("LegArmor", () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.LEGS)));
+        Widget.addTextGenerator("FootArmor", () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.FEET)));
+        Widget.addTextGenerator("Totem", () -> String.valueOf(mc.player.getInventory().count(Items.TOTEM_OF_UNDYING)));
+
+        Widget.addTextGenerator("FPS: ",()-> String.valueOf(fps));
+        Widget.addTextGenerator("BPS: ",()-> String.valueOf(bps));
+        Widget.addTextGenerator("Ping: ",()-> String.valueOf(ping));
+        Widget.addTextGenerator("",()-> String.valueOf(Biome));
 
 
         for (Widget widget : widgets) {
-            if (widget instanceof TextWidget textWidget)
-            {
-                if (textIndex < 4) {
-                    TextGenerator textGenerator = TextWidgetText[textIndex++];
-                    textWidget.setDataTextGenerator(textGenerator);
-                }
-                dynamicUtil.getWidgetManager().addWidget(textWidget);
-            }
-            if (widget instanceof ArmorWidgetExtension armorWidget) {
-                if (armorIndex < 4) {
-                    TextGenerator textGenerator = ArmorWidgetText[armorIndex++];
-                    armorWidget.setTextGenerator(textGenerator);
-                    armorWidget.setColor(() -> color);
-                }
-                dynamicUtil.getWidgetManager().addWidget(armorWidget);
-            }
-            if (widget instanceof ItemWidget itemWidget) {
-                TextGenerator textGenerator = () -> String.valueOf(mc.player.getInventory().count(Items.TOTEM_OF_UNDYING));
-                itemWidget.setTextGenerator(textGenerator);
-                dynamicUtil.getWidgetManager().addWidget(itemWidget);
-            }
-            if (widget instanceof MuppetWidget muppet) {
-                dynamicUtil.getWidgetManager().addWidget(muppet);
-            }
+            dynamicUtil.getWidgetManager().addWidget(widget);
         }
+        dynamicUtil.WidgetLoaded=true;
     }
 
     @Override
     public Widget loadWidgetsFromTag(String className, NbtCompound widgetTag) {
 
         if (className.equals(MuppetWidget.class.getName())) {
-            MuppetWidget widget = new MuppetWidget(MinecraftClient.getInstance(), 0, 0, true);
+            MuppetWidget widget = new MuppetWidget(MinecraftClient.getInstance(), 0, 0, true,"");
             widget.readFromTag(widgetTag);
             return widget;
         }
         if (className.equals(ArmorWidgetExtension.class.getName())) {
-            ArmorWidgetExtension widget = new ArmorWidgetExtension(mc, EquipmentSlot.FEET, 0, 0, true, TextureHelper.Position.ABOVE, () -> "", () -> color);
+            ArmorWidgetExtension widget = new ArmorWidgetExtension(mc, EquipmentSlot.FEET, 0, 0, true, TextureHelper.Position.ABOVE, () -> "", () -> color,true,"");
             widget.readFromTag(widgetTag);
             return widget;
         }

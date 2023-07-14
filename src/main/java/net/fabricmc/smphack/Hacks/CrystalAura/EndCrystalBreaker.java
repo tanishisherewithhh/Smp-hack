@@ -4,7 +4,10 @@ import net.fabricmc.smphack.GeneralConfig;
 import net.fabricmc.smphack.MainGui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -24,8 +27,11 @@ public class EndCrystalBreaker extends MainGui {
     private static int ASdamage;
     private boolean isBreaking = false;
     private int CrystalDelay;
+    private boolean SmartCrystal;
     private final Object lock = new Object();
-
+    // Added variables for SmartCrystal mode
+    private double smartCrystalRange;
+    private double smartCrystalDamageThreshold = 5.0;
 
     @Override
     public void toggled() {
@@ -41,9 +47,9 @@ public class EndCrystalBreaker extends MainGui {
     }
     private void startBreaking() {
         isBreaking = true;
-        CrystalDelay = GeneralConfig.getConfig().getCrystalBreakDelay_in_seconds();
         Thread t = new Thread(() -> {
             while (isBreaking) {
+                CrystalDelay = GeneralConfig.getConfig().getCrystalBreakDelay_in_seconds();
                 long startTime = System.currentTimeMillis();
                 breakNextCrystal();
                 long endTime = System.currentTimeMillis();
@@ -73,6 +79,9 @@ public class EndCrystalBreaker extends MainGui {
 
         AntiSuicide = GeneralConfig.getConfig().getAntiSuicide();
         OnlyOwn = GeneralConfig.getConfig().getOnlyOwn();
+        SmartCrystal=GeneralConfig.getConfig().getSmartCrystal();
+        smartCrystalDamageThreshold=GeneralConfig.getConfig().getSmartCrystalDamageThreshold();
+        distance = GeneralConfig.getConfig().getRange() + 0.5;
 
         x = player.getX();
         y = player.getY();
@@ -83,24 +92,32 @@ public class EndCrystalBreaker extends MainGui {
         synchronized (lock) {
             crystals = mc.world.getEntitiesByType(EntityType.END_CRYSTAL, searchBox, entity -> true);
         }
-        distance = GeneralConfig.getConfig().getRange() + 0.5;
 
         // Group multiple crystals together
         Queue<EndCrystalEntity> crystalsToBreak = new ConcurrentLinkedQueue<>();
-        for (EndCrystalEntity crystal : crystals) {
-            try {
-                if (EndCrystalDamage(player, crystal)) {
-                    return;
-                } else {
-                    crystalsToBreak.add(crystal);
+        if (SmartCrystal) {
+            for (EndCrystalEntity crystal : crystals) {
+                try {
+                    if (shouldBreakSmartCrystal(player, crystal)) {
+                        crystalsToBreak.add(crystal);
+                    }
+                } catch (ConcurrentModificationException e) {
+                    e.printStackTrace();
                 }
-            } catch (ConcurrentModificationException e) {
-                // Handle the ConcurrentModificationException
-                // For example, log the error and continue with the next iteration of the loop
-                e.printStackTrace();
+            }
+        } else {
+            for (EndCrystalEntity crystal : crystals) {
+                try {
+                    if (EndCrystalDamage(player, crystal)) {
+                        return;
+                    } else {
+                        crystalsToBreak.add(crystal);
+                    }
+                } catch (ConcurrentModificationException e) {
+                    e.printStackTrace();
+                }
             }
         }
-
         // Break all crystals in a single batch
         for (EndCrystalEntity crystal : crystalsToBreak) {
             player.swingHand(Hand.MAIN_HAND);
@@ -110,6 +127,24 @@ public class EndCrystalBreaker extends MainGui {
         }
     }
 
+    // Added method for SmartCrystal mode
+    private boolean shouldBreakSmartCrystal(PlayerEntity player, EndCrystalEntity crystal) {
+        smartCrystalRange=10f;
+        Box searchBox = new Box(crystal.getX() - smartCrystalRange, crystal.getY() - smartCrystalRange, crystal.getZ() - smartCrystalRange, crystal.getX() + smartCrystalRange, crystal.getY() + smartCrystalRange, crystal.getZ() + smartCrystalRange);
+        assert MinecraftClient.getInstance().world != null;
+        List<Entity> entities = MinecraftClient.getInstance().world.getOtherEntities(player, searchBox);
+        for (Entity entity : entities) {
+            if (!(entity instanceof EndCrystalEntity) && !(entity instanceof ItemEntity)&& !(entity instanceof ExperienceOrbEntity)) {
+                double distance = Math.sqrt(entity.distanceTo(crystal));
+                double damage = 6 * (1.01 - (distance / 5.5));
+                System.out.println("Damage: " + damage);
+                if (damage > smartCrystalDamageThreshold) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
 

@@ -88,6 +88,8 @@ public class ControllersConfig implements ConfigData {
     private int speedforjesus = 1;
     private int DelayAC = 0;
     private int AntiSuicideDamage=10;
+    private double SmartCrystalDamageThreshold=5;
+
 
     public boolean Antikick = true;
     public boolean Fullbright = true;
@@ -112,6 +114,7 @@ public class ControllersConfig implements ConfigData {
     private boolean OnlyOwn=false;
     private boolean AutoTool=false;
     private boolean CustomBG=true;
+    private boolean SmartCrystal=false;
 
     private int playernametagcolour = 0xFF;
 
@@ -172,6 +175,20 @@ public class ControllersConfig implements ConfigData {
 
     public void setAutoTool(boolean Autotool) {
         this.AutoTool = Autotool;
+    }
+    public double getSmartCrystalDamageThreshold() {
+        return SmartCrystalDamageThreshold;
+    }
+
+    public void setSmartCrystalDamageThreshold(double damageThreshold) {
+        this.SmartCrystalDamageThreshold = damageThreshold;
+    }
+    public boolean getSmartCrystal() {
+        return SmartCrystal;
+    }
+
+    public void setSmartCrystal(boolean SmartCrystal) {
+        this.SmartCrystal = SmartCrystal;
     }
 
     public boolean getShowMuppet() {

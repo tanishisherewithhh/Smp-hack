@@ -36,7 +36,7 @@ dependencies {
 	}
 
 	//DynamicHUD
-	modImplementation 'com.github.V-Fast:DynamicHUD:v1.1.0'
+	modImplementation 'com.github.V-Fast:DynamicHUD:1.1.3'
 
 
 	// Mod Menu

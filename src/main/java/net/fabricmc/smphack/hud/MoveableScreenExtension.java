@@ -3,6 +3,7 @@ package net.fabricmc.smphack.hud;
 import com.tanishisherewith.dynamichud.huds.MoveableScreen;
 import com.tanishisherewith.dynamichud.util.DynamicUtil;
 import com.tanishisherewith.dynamichud.widget.Widget;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
 public class MoveableScreenExtension extends MoveableScreen {
@@ -26,5 +27,10 @@ public class MoveableScreenExtension extends MoveableScreen {
             colorPicker=null;
             return;
         }
+    }
+
+    @Override
+    public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+        super.render(drawContext, mouseX, mouseY, delta);
     }
 }
