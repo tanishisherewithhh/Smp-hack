@@ -32,7 +32,7 @@ Actual purpose may be regarded in the minds of the User. I heavily encourage to 
 
 # [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
 
-# [DynamicHUD >=v2.5.0](https://modrinth.com/mod/dynamichud)
+# [DynamicHUD (for smphack versions >=v2.5.0) ](https://modrinth.com/mod/dynamichud)
 
 ## Credits
 WurstClient,
