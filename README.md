@@ -6,7 +6,7 @@
 
 
 
-# 1.20 and above fabric Mod used in small servers and smps' to play with friends.
+# 1.20 and above fabric utility mod used in small servers and smps' to play with friends.
 ### Introduction
 This is my first mod created and since I found that the hack community in latest versions is really vast, I thought it would be a better approach to use this community for learning purpose.
 This mod was heavily inspired from various hack clients including wurst,bleachhack,FabricHax,Altwer-Flyhack,etc.
