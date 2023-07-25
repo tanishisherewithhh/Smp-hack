@@ -71,7 +71,6 @@ You can change the keybinds via the minecraft's keybind/Control settings
 |AutoSprint | Sprints automatically for you | `Change Via Config settings` |
 |AutoCrystal|Automatically breaks crystals (really fast if you use autoclicker to place)|`UNBOUND`|
 |KillAura|Automatically attacks entities and players near you|`UNBOUND`|
-|Reach|Increases the reach of the player (currently not working) |`Y`|
 |Autoclicker|Autoclicks either of your mouse buttons with a delay |`Either keyboard or mouse bind`|
 |AimBot|Automatically aims at the nearest entity|`UNBOUND`|
 |Scaffold |Automatically places blocks below the player |`UNBOUND`|
