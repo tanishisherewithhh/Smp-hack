@@ -31,13 +31,13 @@ public class MuppetWidget extends Widget {
 
     @Override
     public WidgetBox getWidgetBox() {
-        int boxWidth = 25; // Set the desired width of the widget box
-        int boxHeight = 55; // Set the desired height of the widget box
-        int x1 = this.getX() - boxWidth;
-        int y1 = this.getY() - boxHeight;
+        int boxWidth = 30; // Set the desired width of the widget box
+        int boxHeight = 60; // Set the desired height of the widget box
+        int x1 = this.getX();
+        int y1 = this.getY();
         int x2 = this.getX() + boxWidth;
-        int y2 = this.getY() + boxHeight/3;
-        return new WidgetBox(x1, y1, x2, y2);
+        int y2 = this.getY() + boxHeight;
+        return new WidgetBox(x1, y1, x2, y2,scale);
     }
 
 
@@ -53,7 +53,7 @@ public class MuppetWidget extends Widget {
             float pitch = player.getPitch();
             int x = this.getX();
             int y = this.getY();
-            InventoryScreen.drawEntity(drawContext,x,y, 25, -yaw, -pitch, player);
+            InventoryScreen.drawEntity(drawContext,x + 15,y + 54, (int) (25*scale), -yaw, -pitch, player);
         }
     }
     @Override

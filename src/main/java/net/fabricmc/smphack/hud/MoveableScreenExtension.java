@@ -22,10 +22,9 @@ public class MoveableScreenExtension extends MoveableScreen {
         super.menu(widget, x, y);
         if (widget instanceof MuppetWidget)
         {
-            contextMenu=null;
-            Slider=null;
+            contextMenus.clear();
+            Sliders.clear();
             colorPicker=null;
-            return;
         }
     }
 

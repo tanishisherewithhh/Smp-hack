@@ -30,6 +30,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.tanishisherewith.dynamichud.DynamicHUD.WIDGETS_FILE;
 import static net.fabricmc.loader.impl.util.StringUtil.capitalize;
@@ -105,9 +106,8 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
         dynamicutil = (DynamicHUD.getDynamicUtil()==null)?new DynamicUtil(mc):DynamicHUD.getDynamicUtil();
         widgets.clear();
 
-        DynamicHUD.setAbstractScreen(new MoveableScreenExtension(Text.of("Editor Screen"), dynamicutil));
+        DynamicHUD.setAbstractScreen(new MoveableScreenExtension(Text.of("Editors Screen"), dynamicutil));
         DynamicHUD.setIWigdets(new DynamicHudClient());
-
         ClientTickEvents.START_WORLD_TICK.register(world -> {
             if(mc.player!=null) {
                 player=mc.player;
@@ -125,10 +125,10 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
             widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.LEGS, 0.2f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.LEGS)), () -> color, true, "LegArmor"));
             widgets.add(new ArmorWidgetExtension(mc, EquipmentSlot.FEET, 0.25f, 0.9f, true, TextureHelper.Position.ABOVE, () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.FEET)), () -> color, true, "FootArmor"));
 
-            widgets.add(new TextWidget(mc, "FPS: ", () -> String.valueOf(fps), 0.05f, 0.7f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
-            widgets.add(new TextWidget(mc, "BPS: ", () -> String.valueOf(bps), 0.05f, 0.75f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
-            widgets.add(new TextWidget(mc, "Ping: ", () -> String.valueOf(ping), 0.05f, 0.8f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
-            widgets.add(new TextWidget(mc, "", () -> String.valueOf(Biome), 0.05f, 0.85f, shadow, true, false, Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "FPS: ", () -> String.valueOf(fps), 0.05f, 0.7f, shadow, true,  Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "BPS: ", () -> String.valueOf(bps), 0.05f, 0.75f, shadow, true,  Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "Ping: ", () -> String.valueOf(ping), 0.05f, 0.8f, shadow, true,  Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
+            widgets.add(new TextWidget(mc, "", () -> String.valueOf(Biome), 0.05f, 0.85f, shadow, true,  Color.WHITE.getRGB(), Color.WHITE.getRGB(), true));
 
             widgets.add(new ItemWidget(mc, Items.TOTEM_OF_UNDYING::getDefaultStack, 0.3f, 0.9f, true, TextureHelper.Position.ABOVE, () -> String.valueOf(mc.player.getInventory().count(Items.TOTEM_OF_UNDYING)), () -> Color.YELLOW, true, "Totem"));
 
@@ -180,7 +180,7 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
     @Override
     public void loadWigdets(DynamicUtil dynamicUtil) {
         dynamicUtil.getWidgetManager().setWidgetLoading(new DynamicHudClient());
-        List<Widget> widgets = dynamicUtil.getWidgetManager().loadWigdets(WIDGETS_FILE);
+        Set<Widget> widgets = dynamicUtil.getWidgetManager().loadWigdets(WIDGETS_FILE);
         assert mc.player != null;
 
         Widget.addTextGenerator("HeadArmor", () -> getDurabilityForStack(mc.player.getEquippedStack(EquipmentSlot.HEAD)));
@@ -203,7 +203,7 @@ public class DynamicHudClient implements ClientModInitializer, IWigdets, WidgetL
 
     @Override
     public Widget loadWidgetsFromTag(String className, NbtCompound widgetTag) {
-
+        System.out.println("Loading widgets from tag");
         if (className.equals(MuppetWidget.class.getName())) {
             MuppetWidget widget = new MuppetWidget(MinecraftClient.getInstance(), 0, 0, true,"");
             widget.readFromTag(widgetTag);
