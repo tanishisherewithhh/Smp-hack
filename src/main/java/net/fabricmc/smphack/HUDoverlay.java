@@ -127,7 +127,7 @@ public class HUDoverlay implements HudRenderCallback {
 
 
             //To stop rendering if debug screen or F3 menu is enabled
-           if (mc.options.debugEnabled) {return;}
+           if (mc.getDebugHud().shouldShowDebugHud()) {return;}
            //To avoid null crashes
             if (Formatting.RED.getColorValue() == null || Formatting.BLUE.getColorValue() == null || Formatting.WHITE.getColorValue() == null || Formatting.GREEN.getColorValue() == null)
             {

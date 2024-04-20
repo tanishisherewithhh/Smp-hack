@@ -34,7 +34,7 @@ public class FakePlayerEntity extends OtherClientPlayerEntity {
         this.setPose(player.getPose());
         this.getInventory().clone(player.getInventory());
         assert mc.world != null;
-        mc.world.addEntity(getId(), this);
+        mc.world.addEntity(this);
         System.out.println("FakePlayer Spawned Instance: " + this);
     }
     public void clear() {

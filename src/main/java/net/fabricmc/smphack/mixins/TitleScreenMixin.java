@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.terraformersmc.modmenu.gui.ModsScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.smphack.GeneralConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -45,8 +46,7 @@ public class TitleScreenMixin extends Screen {
     protected TitleScreenMixin(Text title) {
         super(title);
     }
-
-    @Inject(at = @At("RETURN"), method = "render")
+    @Inject(at = @At("TAIL"), method = "render")
     private void render(DrawContext drawContext, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         CustomScreen = GeneralConfig.getConfig().isCustomBG();
         if (CustomScreen) {
@@ -54,10 +54,28 @@ public class TitleScreenMixin extends Screen {
             if (this.backgroundFadeStart == 0L) {
                 this.backgroundFadeStart = Util.getMeasuringTimeMs();
             }
+
+            // Smoothing factor
+            float smoothFactor = 0.09f;
+
+            // Calculate the texture shift based on the mouse position
+            float shiftX = (float) mouseX / this.width - 0.5f;
+            float shiftY = (float) mouseY / this.height - 0.5f;
+
+            // Apply the smoothing factor
+            shiftX *= smoothFactor;
+            shiftY *= smoothFactor;
+
+            // Enlarge the texture and apply the shift
+            int textureWidth = this.width * 2;
+            int textureHeight = this.height * 2;
+            int textureX = (int) (-textureWidth / 4 + shiftX * this.width / 2);
+            int textureY = (int) (-textureHeight / 4 + shiftY * this.height / 2);
+
             mc.getTextureManager().bindTexture(SPACE_BACKGROUND);
             RenderSystem.setShaderTexture(0, SPACE_BACKGROUND);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, (float) MathHelper.ceil(MathHelper.clamp((float) (Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F, 0.0F, 1.0F)));
-            drawContext.drawTexture(SPACE_BACKGROUND,0, 0, 0, 0, MinecraftClient.getInstance().getWindow().getScaledWidth(), MinecraftClient.getInstance().getWindow().getScaledHeight(), MinecraftClient.getInstance().getWindow().getScaledWidth(), MinecraftClient.getInstance().getWindow().getScaledHeight());
+            drawContext.drawTexture(SPACE_BACKGROUND, textureX, textureY, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
             this.logoDrawer.draw(drawContext, mc.getWindow().getScaledWidth(), 255);
         }
     }
@@ -100,11 +118,13 @@ public class TitleScreenMixin extends Screen {
 
             y += buttonHeight + spacing;
 
-            this.addDrawableChild(new PressableTextWidget((this.width/2) - 20, y, buttonWidth, buttonHeight, Text.translatable("Mods"), (button) -> {
-                mc.setScreen(new ModsScreen(this));
-            }, this.textRenderer));
+            if(FabricLoader.getInstance().isModLoaded("modmenu")) {
+                this.addDrawableChild(new PressableTextWidget((this.width / 2) - 20, y, buttonWidth, buttonHeight, Text.translatable("Mods"), (button) -> {
+                    mc.setScreen(new ModsScreen(this));
+                }, this.textRenderer));
 
-            y += buttonHeight + spacing;
+                y += buttonHeight + spacing;
+            }
 
             this.addDrawableChild(new PressableTextWidget((this.width / 2) - 29, y, buttonWidth, buttonHeight, Text.translatable("menu.quit"), (button) -> {
                 mc.stop();

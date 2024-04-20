@@ -54,7 +54,7 @@ public class CharacterMode {
                 //font
                 TextRenderer font = mc.textRenderer;
                 if (font == null || mc.player == null) return;
-                if (mc.options.debugEnabled) return;
+                if (mc.getDebugHud().shouldShowDebugHud()) return;
                 PlayerEntity player = MinecraftClient.getInstance().player;
                 if (GeneralConfig.getConfig() == null) {
                     return;
@@ -64,13 +64,11 @@ public class CharacterMode {
 
                 //Start of variables
                 TextShadow = GeneralConfig.getConfig().getTextshadow();
-                String CoordSide = String.valueOf(config.Coordside);
                 coordinates(player);
                 displayposandcolour(font);
                 int x_offset = 0;
                 //End of initializing variables;
-                String text = "XYZ " + xp + " " + yp + " " + zp;
-                String LOGO = "SMP-Hack v2-5-0";
+                String LOGO = "SMP-Hack v2-6";
 
                 int stringWidth = font.getWidth(LOGO);
                 for (int i = 0; i < LOGO.length(); i++) {
@@ -82,42 +80,7 @@ public class CharacterMode {
                     x_offset += charWidth;
                 }
 
-                // Calculate text width and colors
-                int textWidth = font.getWidth(text);
-                Color[] colors = new Color[text.length()];
-                for (int i = 0; i < text.length(); i++) {
-                    float hueOffset = i / (float) text.length();
-                    colors[i] = Color.getHSBColor(hue + hueOffset, 1, 1);
-                }
-
-                // Draw coordinate text
-                for (int i = 0; i < text.length(); i++) {
-                    char c = text.charAt(i);
-                    int width = font.getWidth(String.valueOf(c));
-                    switch (CoordSide) {
-                        case "TopRight" -> {
-                            tsw = screenWidth - textWidth - 20 + i * width;
-                            y = 16;
-                        }
-                        case "BottomRight" -> {
-                            tsw = screenWidth - textWidth - 20 + i * width;
-                            y = windowHeight - font.fontHeight - 10;
-                        }
-                        case "BottomLeft" -> {
-                            tsw = (tw + i * width);
-                            y = windowHeight - font.fontHeight - 23;
-                        }
-                        case "Top" -> {
-                            tsw = (((screenWidth - textWidth) / 2) + i * width) - 2;
-                            y = 5;
-                        }
-
-                    }
-                    rendertext(drawContext, font, String.valueOf(c), tsw, y, colors[i].getRGB());
-                }
-
             }
-
         });
     }
 }

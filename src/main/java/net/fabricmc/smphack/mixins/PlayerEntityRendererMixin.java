@@ -10,6 +10,7 @@ import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.scoreboard.ScoreboardDisplaySlot;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.joml.Matrix4f;
@@ -35,7 +36,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             matrixStack.translate(0, abstractClientPlayerEntity.getHeight() + 0.5f, 0);
             if (this.hasLabel(abstractClientPlayerEntity) && d <= 4096.0) {
                 matrixStack.translate(0.0D, 9.0F * 1.15F * 0.025F, 0.0D);
-                if (d < 100.0 && abstractClientPlayerEntity.getScoreboard().getObjectiveForSlot(2) != null) {
+                if (d < 100.0 && abstractClientPlayerEntity.getScoreboard().getObjectiveForSlot(ScoreboardDisplaySlot.LIST) != null) {
                     matrixStack.translate(0.0D, 9.0F * 1.15F * 0.025F, 0.0D);
                 }
             }
