@@ -9,6 +9,7 @@ import net.fabricmc.smphack.Hacks.AntiHunger.AntiHunger;
 import net.fabricmc.smphack.Hacks.AutoSprint.AutoSprint;
 import net.fabricmc.smphack.Hacks.Autoclicker.Autoclicker;
 import net.fabricmc.smphack.Hacks.CrystalAura.EndCrystalBreaker;
+import net.fabricmc.smphack.Hacks.CrystalSwitch;
 import net.fabricmc.smphack.Hacks.Fly.Fly;
 import net.fabricmc.smphack.Hacks.Jesus.jesus;
 import net.fabricmc.smphack.Hacks.Killaura.KillAura;
