@@ -102,7 +102,7 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
                 .build();
         biomeWidget  = new TextWidget.Builder()
                 .setX(10)
-                .setY(60)
+                .setY(56)
                 .setDRKey("Biome")
                 .rainbow(true)
                 .shadow(false)
@@ -112,7 +112,7 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
                 .build();
         speedWidget  = new TextWidget.Builder()
                 .setX(10)
-                .setY(65)
+                .setY(57)
                 .setDRKey("BPS")
                 .rainbow(true)
                 .shadow(false)
@@ -122,7 +122,7 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
                 .build();
         pingWidget  = new TextWidget.Builder()
                 .setX(10)
-                .setY(70)
+                .setY(58)
                 .setDRKey("Ping")
                 .rainbow(true)
                 .shadow(false)
@@ -133,7 +133,7 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
 
         muppetWidget = new MuppetWidget("smphack");
         muppetWidget.shouldScale = true;
-        muppetWidget.setPosition(20,60);
+        muppetWidget.setPosition(50,50);
     }
     @Override
     public void addWidgets() {

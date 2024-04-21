@@ -115,10 +115,17 @@ public class ControllersConfig implements ConfigData {
     private boolean AutoTool=false;
     private boolean CustomBG=true;
     private boolean SmartCrystal=false;
+    private boolean CrystalSwitch=false;
 
     private int playernametagcolour = 0xFF;
 
+    public boolean isCrystalSwitch() {
+        return CrystalSwitch;
+    }
 
+    public void setCrystalSwitch(boolean crystalSwitch) {
+        CrystalSwitch = crystalSwitch;
+    }
 
     public int getPlayernametagcolour() {
         return playernametagcolour;

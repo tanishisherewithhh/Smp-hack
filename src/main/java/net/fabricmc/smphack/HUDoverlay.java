@@ -38,7 +38,7 @@ public class HUDoverlay implements HudRenderCallback {
     Speed speed = new Speed();
     public static jesus jes = new jesus();
     Autoclicker autoclicker=new Autoclicker();
-    EndCrystalBreaker endCrystalBreaker = new EndCrystalBreaker();
+    public static EndCrystalBreaker endCrystalBreaker = new EndCrystalBreaker();
     KillAura killAura = new KillAura();
     AutoAim Aimbot = new AutoAim();
     AutoSprint autoSprint = new AutoSprint();

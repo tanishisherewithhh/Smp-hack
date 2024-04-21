@@ -43,6 +43,11 @@ public class ConfigScreen {
                 .setSaveConsumer(newValue -> GeneralConfig.getConfig().setSmartCrystalDamageThreshold(newValue))
                 .setTooltip(Text.of("Min Damage Threshold so the crystal would break"))
                 .build());
+        Combat.addEntry(entryBuilder.startBooleanToggle(Text.of("CrystalSwitch"), GeneralConfig.getConfig().isCrystalSwitch())
+                .setDefaultValue(true)
+                .setSaveConsumer(newValue -> GeneralConfig.getConfig().setCrystalSwitch(newValue))
+                .setTooltip(Text.of("Switches to crystals in hotbar after placing an obsidian only when crystal aura is on"))
+                .build());
 
         Combat.addEntry(entryBuilder.startBooleanToggle(Text.of("AntiSuicide"), GeneralConfig.getConfig().getAntiSuicide())
                 .setDefaultValue(false)
