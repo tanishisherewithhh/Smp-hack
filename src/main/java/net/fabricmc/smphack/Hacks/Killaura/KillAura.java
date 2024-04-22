@@ -42,6 +42,7 @@ public class KillAura extends MainGui {
         SwordAxeOnly=GeneralConfig.getConfig().getSwordAxeOnly();
         if (MinecraftClient.getInstance().player.isDead()) {
             stop();
+            enabled = false;
         }
         else if (enabled) {
             start();
@@ -83,8 +84,8 @@ public class KillAura extends MainGui {
         AutodelayKA=GeneralConfig.getConfig().getAutoDelayKA();
         MultiTarget=GeneralConfig.getConfig().getMultiTarget();
 
-        Box searchBox = new Box(player.getX() - 4.5, player.getY() - 4.5, player.getZ() - 4.5,
-                player.getX() + 4.5, player.getY() + 4.5, player.getZ() + 4.5);
+        Box searchBox = new Box(player.getX() - range, player.getY() - range, player.getZ() - range,
+                player.getX() + range, player.getY() + range, player.getZ() + range);
         if (AutodelayKA) {
             setDelay(mc.player);
         }
@@ -159,13 +160,12 @@ public class KillAura extends MainGui {
         if (distance < range) {
             // Make the hit a critical hit
             mc.player.networkHandler.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, BlockPos.ORIGIN, Direction.DOWN));
-            mc.player.networkHandler.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, BlockPos.ORIGIN, Direction.DOWN));
-            mc.player.setVelocity(0, 0.001, 0);
-
-            player.addCritParticles(target);
-            // Attack the target
             Criticals criticals=new Criticals();
             criticals.doCritical();
+            player.addCritParticles(target);
+            mc.player.networkHandler.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, BlockPos.ORIGIN, Direction.DOWN));
+
+            // Attack the target
             mc.player.swingHand(Hand.MAIN_HAND,true);
             if (mc.interactionManager!=null) {
                 mc.interactionManager.attackEntity(player, target);
