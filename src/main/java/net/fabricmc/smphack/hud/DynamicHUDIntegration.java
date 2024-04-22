@@ -29,11 +29,12 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
     WidgetRenderer renderer;
 
     public static int getPing() {
-        assert mc.player != null;
-        PlayerListEntry entry = mc.player.networkHandler.getPlayerListEntry(mc.player.getUuid());
-        if (entry != null) {
-            return entry.getLatency(); // This method updates slow
-        }
+       if(mc.player != null) {
+           PlayerListEntry entry = mc.player.networkHandler.getPlayerListEntry(mc.player.getUuid());
+           if (entry != null) {
+               return entry.getLatency(); // This method updates slow
+           }
+       }
         return 0;
     }
 
