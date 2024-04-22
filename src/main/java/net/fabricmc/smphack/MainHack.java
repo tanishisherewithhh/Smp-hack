@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class MainHack  implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("Smp-hack");
-    CrystalSwitch crystalSwitch = new CrystalSwitch();
+    CrystalSwitch crystalSwitch;
 
     @Override
     public void onInitialize() {

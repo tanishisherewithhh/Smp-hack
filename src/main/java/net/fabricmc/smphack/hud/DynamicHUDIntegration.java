@@ -139,6 +139,10 @@ public class DynamicHUDIntegration implements DynamicHudIntegration {
     public void addWidgets() {
         WidgetManager.addWidgets(
                 coordsWidget,
+                fpsWidget,
+                speedWidget,
+                biomeWidget,
+                pingWidget,
                 muppetWidget);
     }
 
