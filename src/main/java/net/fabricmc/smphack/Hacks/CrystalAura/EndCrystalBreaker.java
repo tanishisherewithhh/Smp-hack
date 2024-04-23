@@ -4,34 +4,46 @@ import net.fabricmc.smphack.GeneralConfig;
 import net.fabricmc.smphack.MainGui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ConcurrentModificationException;
-import java.util.List;
-import java.util.Queue;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class EndCrystalBreaker extends MainGui {
-    static double x, y, z;
-    private static double distance;
-    private static boolean AntiSuicide;
-    private static boolean OnlyOwn;
-    private static int ASdamage;
+    double x, y, z;
+    private double distance;
+    private boolean AntiSuicide;
+    private boolean OnlyOwn;
+    private int ASdamage;
     private boolean isBreaking = false;
     private int CrystalDelay;
     private boolean SmartCrystal;
-    private final Object lock = new Object();
     // Added variables for SmartCrystal mode
     private double smartCrystalRange;
     private double smartCrystalDamageThreshold = 5.0;
+    private final Map<UUID, Integer> crystalAttackCount = new HashMap<>();
+    private ScheduledExecutorService executor;
+
+    public EndCrystalBreaker() {
+        executor = Executors.newSingleThreadScheduledExecutor();
+    }
 
     @Override
     public void toggled() {
@@ -47,34 +59,29 @@ public class EndCrystalBreaker extends MainGui {
     }
     private void startBreaking() {
         isBreaking = true;
-        Thread t = new Thread(() -> {
-            while (isBreaking) {
-                CrystalDelay = GeneralConfig.getConfig().getCrystalBreakDelay_in_seconds();
-                long startTime = System.currentTimeMillis();
-                breakNextCrystal();
-                long endTime = System.currentTimeMillis();
-                long ping = endTime - startTime;
-                try {
-                    // Adjust delay time based on ping
-                    Thread.sleep(ping+(CrystalDelay * 4L)+2);
-                } catch (InterruptedException e) {
-                    // Handle the InterruptedException
-                    e.printStackTrace();
-                }
-            }
-        });
-        t.start();
+        if (executor.isShutdown()) {
+            executor = Executors.newSingleThreadScheduledExecutor();
+        }
+        CrystalDelay = GeneralConfig.getConfig().getCrystalBreakDelay_in_seconds();
+        if (CrystalDelay > 0) {
+            executor.scheduleAtFixedRate(this::breakNextCrystal, 0, CrystalDelay*4L + 2, TimeUnit.MILLISECONDS);
+        } else {
+            System.err.println("CrystalDelay must be greater than 0");
+        }
     }
+
 
 
     private void stopBreaking() {
         isBreaking = false;
+        executor.shutdownNow();
     }
 
     private void breakNextCrystal() {
         MinecraftClient mc = MinecraftClient.getInstance();
         ClientPlayerEntity player = mc.player;
-        assert mc.world != null;
+        crystalAttackCount.clear();
+
         if (player == null || mc.world == null) return;
 
         AntiSuicide = GeneralConfig.getConfig().getAntiSuicide();
@@ -86,45 +93,66 @@ public class EndCrystalBreaker extends MainGui {
         x = player.getX();
         y = player.getY();
         z = player.getZ();
+        if(player.getMainHandStack().getItem() == Items.END_CRYSTAL || player.getMainHandStack().getItem() == Items.OBSIDIAN) {
+            Box searchBox = new Box(x - distance, y - distance, z - distance, x + distance, y + distance, z + distance);
+            List<EndCrystalEntity> crystals = mc.world.getEntitiesByType(EntityType.END_CRYSTAL, searchBox, entity -> true);
 
-        Box searchBox = new Box(x - distance, y - distance, z - distance, x + distance, y + distance, z + distance);
-        List<EndCrystalEntity> crystals;
-        synchronized (lock) {
-            crystals = mc.world.getEntitiesByType(EntityType.END_CRYSTAL, searchBox, entity -> true);
-        }
-
-        // Group multiple crystals together
-        Queue<EndCrystalEntity> crystalsToBreak = new ConcurrentLinkedQueue<>();
-        if (SmartCrystal) {
-            for (EndCrystalEntity crystal : crystals) {
-                try {
+            // Group multiple crystals together
+            Queue<EndCrystalEntity> crystalsToBreak = new ConcurrentLinkedQueue<>();
+            if (SmartCrystal) {
+                for (EndCrystalEntity crystal : crystals) {
                     if (shouldBreakSmartCrystal(player, crystal)) {
                         crystalsToBreak.add(crystal);
                     }
-                } catch (ConcurrentModificationException e) {
-                    e.printStackTrace();
                 }
-            }
-        } else {
-            for (EndCrystalEntity crystal : crystals) {
-                try {
+            } else {
+                for (EndCrystalEntity crystal : crystals) {
                     if (EndCrystalDamage(player, crystal)) {
-                        return;
+                        continue;
                     } else {
                         crystalsToBreak.add(crystal);
                     }
-                } catch (ConcurrentModificationException e) {
-                    e.printStackTrace();
+                }
+            }
+            // Break all crystals in a single batch
+            for (EndCrystalEntity crystal : crystalsToBreak) {
+                UUID crystalId = crystal.getUuid();
+                int attackCount = crystalAttackCount.getOrDefault(crystalId, 0);
+                if (attackCount < 2 && crystal.isAlive()) {  // Only attack a crystal up to 2 times
+                    player.swingHand(Hand.MAIN_HAND);
+                    Vec3d playerEyePos = player.getEyePos();
+                    Vec3d crystalPos = crystal.getPos();
+                    HitResult hitResult = mc.world.raycast(new RaycastContext(playerEyePos, crystalPos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, player));
+
+                    if (hitResult.getType() == HitResult.Type.MISS) {
+                        // There's a clear line of sight to the crystal
+// Calculate the yaw and pitch to look at the End Crystal
+                        PlayerMoveC2SPacket.LookAndOnGround packet = getLookAndOnGroundPacket(crystal, player);
+
+// Send the packet to the server
+                        Objects.requireNonNull(MinecraftClient.getInstance().getNetworkHandler()).sendPacket(packet);
+                        crystal.getBoundingBox().expand(0.5f);
+                        if (mc.interactionManager != null) {
+                            mc.interactionManager.attackEntity(player, crystal);
+                        }
+                        crystalAttackCount.put(crystalId, attackCount + 1);
+                    }
                 }
             }
         }
-        // Break all crystals in a single batch
-        for (EndCrystalEntity crystal : crystalsToBreak) {
-            player.swingHand(Hand.MAIN_HAND);
-            if (mc.interactionManager != null) {
-                mc.interactionManager.attackEntity(player, crystal);
-            }
-        }
+    }
+
+    private static PlayerMoveC2SPacket.@NotNull LookAndOnGround getLookAndOnGroundPacket(EndCrystalEntity crystal, ClientPlayerEntity player) {
+        double dx = crystal.getX() - player.getX();
+        double dy = crystal.getY() - player.getY();
+        double dz = crystal.getZ() - player.getZ();
+        double distance = Math.sqrt(dx * dx + dz * dz);
+        float yaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
+        float pitch = (float)-(Math.atan2(dy, distance) * 180.0D / Math.PI);
+
+// Create a new PlayerMoveC2SPacket to update the player's rotation on the server
+        PlayerMoveC2SPacket.LookAndOnGround packet = new PlayerMoveC2SPacket.LookAndOnGround(yaw, pitch, player.isOnGround());
+        return packet;
     }
 
     // Added method for SmartCrystal mode
@@ -137,7 +165,6 @@ public class EndCrystalBreaker extends MainGui {
             if (!(entity instanceof EndCrystalEntity) && !(entity instanceof ItemEntity)&& !(entity instanceof ExperienceOrbEntity)) {
                 double distance = Math.sqrt(entity.distanceTo(crystal));
                 double damage = 6 * (1.01 - (distance / 5.5));
-                System.out.println("Damage: " + damage);
                 if (damage > smartCrystalDamageThreshold) {
                     return true;
                 }
@@ -160,10 +187,6 @@ public class EndCrystalBreaker extends MainGui {
                 return true;
             }
             return damage > ASdamage;
-        }
-        if (OnlyOwn) {
-                UUID ownerUUID = entity.getUuid();
-                return player.getUuid().equals(ownerUUID);
         }
         return false;
     }

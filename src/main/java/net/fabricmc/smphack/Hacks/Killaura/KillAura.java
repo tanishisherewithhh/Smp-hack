@@ -84,8 +84,8 @@ public class KillAura extends MainGui {
         AutodelayKA=GeneralConfig.getConfig().getAutoDelayKA();
         MultiTarget=GeneralConfig.getConfig().getMultiTarget();
 
-        Box searchBox = new Box(player.getX() - range, player.getY() - range, player.getZ() - range,
-                player.getX() + range, player.getY() + range, player.getZ() + range);
+        Box searchBox = new Box(player.getX() - 4.5, player.getY() - 4.5, player.getZ() - 4.5,
+                player.getX() + 4.5, player.getY() + 4.5, player.getZ() + 4.5);
         if (AutodelayKA) {
             setDelay(mc.player);
         }
