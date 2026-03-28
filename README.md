@@ -1,10 +1,7 @@
-
-![smphack logo](https://user-images.githubusercontent.com/120117618/224469620-f7d73a4f-8907-4087-b22c-72c73e427bc7.png)
-
-
-#                                                                 Smp hack
-
-
+<p align="center">
+  <img width="250" height="250" alt="smphack logo" src="https://github.com/user-attachments/assets/95a4e7ea-ce5b-4d8e-ac23-549553a4d4c0" />
+  <h1 align="center">SMP hack</h1>
+</p>
 
 # 1.20 and above fabric utility mod used in small servers and smps' to play with friends.
 ### Introduction
